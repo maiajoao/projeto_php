@@ -8,6 +8,9 @@ if (isset($_POST['enviar'])) {
     $senha = $mysqli->real_escape_string($_POST['senha']);
     $rsenha = $mysqli->real_escape_string($_POST['rsenha']);
 
+    $sql_query = $mysqli->query("SELECT * FROM usuarios WHERE email = '$email'") or die($mysqli->error);
+    $qntd = $sql_query->num_rows;
+
     $erro = array();
     if (empty($nome))
         $erro[] = "Preencha o nome";
@@ -24,9 +27,6 @@ if (isset($_POST['enviar'])) {
 
     if ($rsenha != $senha)
         $erro[] = "As senhas não batem";
-
-    $sql_query = $mysqli->query("SELECT * FROM usuarios WHERE email = '$email'") or die($mysqli->error);
-    $qntd = $sql_query->num_rows;
 
 
     if (count($erro) == 0) {
