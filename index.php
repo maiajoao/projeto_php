@@ -1,5 +1,6 @@
 <?php
 // Conexão com o Banco de dados
+include('lib/conexao.php');
 
 // Protejer contra contas não logadas
 
@@ -11,7 +12,11 @@ if(!isset($_SESSION)) {
 // query_string
 $pagina = 'inicial.php';
 if(isset($_GET['p'])) {
-    $pagina = $_GET['p'] . '.php';
+    if(file_exists('pages/' . $_GET['p'])){
+        $pagina = $_GET['p'] . '.php';
+    } else {
+        $pagina = 'erro.php';
+    }
 }
 
 // Coletar os dados do usuário logado
