@@ -8,17 +8,21 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     $senha = $mysqli->real_escape_string($_POST['senha']);
 
     $sql_query = $mysqli->query("SELECT * FROM usuarios WHERE email = '$email'") or die($mysqli->error);
-    $usuario = $sql_query->fetch_assoc();
-
-    if(password_verify($senha, $usuario['senha'])) {
-        if(!isset($_SESSION))
-            session_start();
-
-        $_SESSION['usuario'] = $usuario['id'];
-        $_SESSION['admin'] = $usuario['admin'];
-        header("Location: index.php");
+    
+    if($sql_query->num_rows>0){
+        $usuario = $sql_query->fetch_assoc();
+        if(password_verify($senha, $usuario['senha'])) {
+            if(!isset($_SESSION))
+                session_start();
+    
+            $_SESSION['usuario'] = $usuario['id'];
+            $_SESSION['admin'] = $usuario['admin'];
+            header("Location: index.php");
+        } else {
+            $erro = "Senha inválida";
+        }
     } else {
-        $erro = "Senha inválida";
+        $erro = "E-mail inválido";
     }
 
 }
@@ -45,7 +49,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     <?php
     }
     ?>
-    <h3>Formulário Cadastro</h3>
+    <h3>Formulário Login</h3>
     <form action="" method="post">
         <p>
             email:

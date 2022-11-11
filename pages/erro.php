@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Erro 404</h1>
-    <p>Página não encontrada!</p>
+    <h1 style="color: black;">Erro 404</h1>
+    <p style="color: black;">Página não encontrada!</p>
 </body>
 </html>

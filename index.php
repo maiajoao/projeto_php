@@ -12,7 +12,7 @@ if(!isset($_SESSION)) {
 // query_string
 $pagina = 'inicial.php';
 if(isset($_GET['p'])) {
-    if(file_exists('pages/' . $_GET['p'])){
+    if(file_exists('pages/' . $_GET['p'] . '.php')){
         $pagina = $_GET['p'] . '.php';
     } else {
         $pagina = 'erro.php';
@@ -44,7 +44,7 @@ if(isset($_GET['p'])) {
                     </h1>
                 </a>
                 <div class="search">
-                    <input type="text" name="#" id="#" class="search-bar" />
+                    <input type="text" name="search-bar" id="#" class="search-bar" />
                     <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </div>
                 <div class="menu">

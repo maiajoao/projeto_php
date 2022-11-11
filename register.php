@@ -7,7 +7,7 @@ if (isset($_POST['enviar'])) {
     $email = $mysqli->real_escape_string($_POST['email']);
     $senha = $mysqli->real_escape_string($_POST['senha']);
     $rsenha = $mysqli->real_escape_string($_POST['rsenha']);
-
+    
     $sql_query = $mysqli->query("SELECT * FROM usuarios WHERE email = '$email'") or die($mysqli->error);
     $qntd = $sql_query->num_rows;
 
@@ -30,6 +30,7 @@ if (isset($_POST['enviar'])) {
 
 
     if (count($erro) == 0) {
+        include('lib/enviar_email.php');
 
         $senha = password_hash($senha, PASSWORD_DEFAULT);
         $mysqli->query("INSERT INTO usuarios (nome, email, senha, data_cadastro, admin) VALUES(
@@ -39,6 +40,10 @@ if (isset($_POST['enviar'])) {
             NOW(),
             0
         )");
+
+        $html = "<h1>Cadastro realizado com sucesso!</h1><p>Obrigado $nome por se registrar no MangaXpress!</p>";
+        enviar_email($email, 'Cadastro concluido!', $html);
+
         die("<script>location.href=\"index.php\";</script>");
     }
 }
