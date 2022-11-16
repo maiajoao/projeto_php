@@ -8,10 +8,20 @@ body{
     background-color: #F0F2F5;
 }
 
+.page-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-box {
+    width: 1200px;
+}
 
 #hero{
     background-image: url(../img/op-background.jpg);
-    height: 82vh;
+    height: 88vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;

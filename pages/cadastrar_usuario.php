@@ -41,32 +41,39 @@ if(isset($_POST['enviar'])) {
 }
 
 ?>
+<head>
+    <link rel="stylesheet" href="assets/css/body.css">
+</head>
 <!-- Page-header start -->
-<div class="page-header card">
-    <div class="row align-items-end">
-        <div class="col-lg-6">
-            <div class="page-header-title">
-                <div class="d-inline">
-                    <h4>Cadastrar Usuário</h4>
-                    <span>Preencha as informações e clique em Salvar</span>
+<div class="page-wrapper">
+    <div class="content-box">
+        <div class="page-header card">
+            <div class="row align-items-end">
+                <div class="col-lg-6">
+                    <div class="page-header-title">
+                        <div class="d-inline">
+                            <h4>Cadastrar Usuário</h4>
+                            <span>Preencha as informações e clique em Salvar</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="page-header-breadcrumb">
-                <ul class="breadcrumb-title">
-                    <li class="breadcrumb-item">
-                        <a href="index.php">
-                            <i class="icofont icofont-home"></i>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="index.php?p=gerenciar_usuarios">
-                            Gerenciar Usuário
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">Cadastrar Usuário</li>
-                </ul>
+                <div class="col-lg-6">
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="index.php">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="index.php?p=gerenciar_usuarios">
+                                    Gerenciar Usuário
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">Cadastrar Usuário</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -4,7 +4,6 @@
 footer{
     background: #161616;
     height: auto;
-    width: 100vw;
     padding-top: 40px;
     color: #b4AD9D;
 
@@ -45,7 +44,7 @@ footer{
 }
 .footer-content p{
     max-width: 500px;
-    margin: 10px auto;
+    margin: 8px auto;
     line-height: 28px;
     font-size: 14px;
     color: #F0F2F5;

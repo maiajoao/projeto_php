@@ -31,6 +31,8 @@ if (isset($_GET['p'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/header_style.css" />
+    <link rel="stylesheet" href="assets/css/footer_style.css" />
+    <link rel="stylesheet" href="assets/css/body.css" />
     <script src="https://kit.fontawesome.com/682b28ed24.js" crossorigin="anonymous"></script>
     <title>Loja - MangaXpress</title>
 </head>
@@ -51,7 +53,7 @@ if (isset($_GET['p'])) {
                 <div class="menu">
                     <?php if (isset($_SESSION['admin'])) {
                         if ($_SESSION['admin'] == 1) {
-                            echo '<a href="#"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+                            echo '<a href="?p=gerenciar_usuarios"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
                         }
                     } ?>
                     <a href="<?php if (empty($_SESSION)) {
@@ -78,11 +80,10 @@ if (isset($_GET['p'])) {
             </div>
         </nav>
     </header>
-    <div class="main-body">
-        <div class="page-wrapper">
-            <?php include('pages/' . $pagina); ?>
-        </div>
-    </div>
+
+    <main>
+        <?php include('pages/' . $pagina); ?>
+    </main>
 
     <footer>
 	<nav class="footer-main">
@@ -93,7 +94,7 @@ if (isset($_GET['p'])) {
 					><span id="footer-name2">Xpress</span>
 				</h1>
 			</a>
-			<p>Sua loja de compras online de mangas!</p>
+			<p>Sua loja de compras online de mangás!</p>
 			<ul class="footer-social-media">
 				<li>
 					<a href="#"><i class="fa fa-facebook"></i></a>
