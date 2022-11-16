@@ -48,7 +48,8 @@ if(isset($_GET['p'])) {
                     <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                 </div>
                 <div class="menu">
-                    <a href="#"><i class="fa-solid fa-user"></i></a>
+                    <?php if(isset($_SESSION['admin'])) { if($_SESSION['admin'] == 1) { echo '<a href="#"><i class="fa-solid fa-screwdriver-wrench"></i></a>'; } }?>
+                    <a href="<?php if(empty($_SESSION)){echo 'login.php';} else {echo '?p=perfil';}?>"><i class="fa-solid fa-user"></i></a>
                     <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a href="#"><i class="fa-solid fa-heart"></i></a>
                     <a href="#"><i class="fa-solid fa-bookmark"></i></a>

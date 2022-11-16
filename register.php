@@ -80,15 +80,15 @@ if (isset($_POST['enviar'])) {
             <input type="text" name="nome" id="">
         </p>
         <p>
-            email:
+            Email:
             <input type="email" name="email" id="">
         </p>
         <p>
-            senha:
+            Senha:
             <input type="text" name="senha" id="">
         </p>
         <p>
-            repitir senha:
+            Repetir senha:
             <input type="text" name="rsenha" id="">
         </p>
         <button type="submit" name="enviar" value="1">Cadastrar</button>

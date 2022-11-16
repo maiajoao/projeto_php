@@ -59,7 +59,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
             senha:
             <input type="text" name="senha" id="">
         </p>
-        <button type="submit" name="enviar" value="1">Logar</button>
+        <button type="submit" name="enviar" value="1">Logar</button> <a href="register.php">registrar</a>
 
     </form>
 </body>
