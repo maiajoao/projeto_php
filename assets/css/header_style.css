@@ -7,18 +7,11 @@
     text-decoration: none;
 }
 
-
-header{
-    position: sticky;
-    top: 0;
-    left: 0;
-    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.507);
-}
 /**PRINCIPAL NAV BAR*/
 .principal-nav{
     background-color: #161616;
     padding: 24px 32px;
-
+    /* box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.459); */
 }
 
 .nav-container{
@@ -60,22 +53,14 @@ header{
 
 
 /*!ICONS*/
-<<<<<<< HEAD
-header i{
-=======
 .fa-solid{
->>>>>>> 20fac37fd96ad69f53a68e2299de838087374a90
     font-size: 22px;
     margin: 0px 16px;
     transition: 0.4s;
     color: #F0F2F5;
 }
 
-<<<<<<< HEAD
-header i:hover{
-=======
 .fa-solid:hover{
->>>>>>> 20fac37fd96ad69f53a68e2299de838087374a90
     color: #5A574F;
 }
 
@@ -128,7 +113,6 @@ header i:hover{
 
 .secundary-nav{
     background-color: #282725;
-    
 }
 
 .nav-container-secundary{
