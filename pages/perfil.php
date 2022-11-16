@@ -13,7 +13,7 @@ $email = $usuario['email'];
 
 $old_data_cadastro = $usuario['data_cadastro'];
 $data_timestamp = strtotime($old_data_cadastro);
-$data_cadastro = date('d/m/Y');
+$data_cadastro = date('d/m/Y', $data_timestamp);
 
 if($usuario['admin']) {
     $cargo = 'Admin';

@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff;
     text-decoration: none;
 }
 
@@ -54,14 +53,14 @@
 
 
 /*!ICONS*/
-i{
+.fa-solid{
     font-size: 22px;
     margin: 0px 16px;
     transition: 0.4s;
     color: #F0F2F5;
 }
 
-i:hover{
+.fa-solid:hover{
     color: #5A574F;
 }
 
