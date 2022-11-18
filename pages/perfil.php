@@ -3,7 +3,7 @@ include('lib/conexao.php');
 include('lib/protect.php');
 protect(0);
 
-$id = $_SESSION['usuario'];
+$id = intval($_SESSION['usuario']);
 $sql_query = $mysqli->query("SELECT * FROM usuarios WHERE id = '$id'");
 $usuario = $sql_query->fetch_assoc();
 

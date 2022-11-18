@@ -1,6 +1,6 @@
 <?php
 // Conexão com o Banco de dados
-// include('lib/conexao.php');
+include('lib/conexao.php');
 
 // Protejer contra contas não logadas
 
