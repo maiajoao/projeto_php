@@ -9,7 +9,9 @@ body {
 	padding-bottom: 6.74rem;
 }
 
-
+main{
+	margin-bottom: 90px;
+}
 
 .page-wrapper {
 	display: flex;
