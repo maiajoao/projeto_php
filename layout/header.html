@@ -20,10 +20,34 @@
 						<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
 					</div>
 					<div class="menu">
-						<a href="#"><i class="fa-solid fa-user"></i></a>
+						<a href="#"><i class="fa-solid fa-user" onclick="toggleMenu()"></i></a>
 						<a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
 						<a href="#"><i class="fa-solid fa-heart"></i></a>
 						<a href="#"><i class="fa-solid fa-bookmark"></i></a>
+					</div>
+					<div class="submenuP" id="subM">
+						<div class="submenu">
+							<div class="userinfo">
+								<h3> Olá, usuário</h3> <!--Alguém q consiga colocar o usuário como o nome pre-selecionado poe pls-->
+							</div>
+							<hr>
+							<a href="#" class="submenuL">
+								<p>Perfil</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Configurações</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Ajuda & Suporte</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Sair</p>
+								<span>></span>
+							</a>
+						</div>
 					</div>
 					<button class="hamburger">
 						<span></span>
@@ -39,5 +63,14 @@
 					<a href="">Pré-vendas</a>
 				</div>
 			</nav>
+
+			
 		</header>
+
+	<script>
+		let subM = document.getElementById("subM")
+		function toggleMenu(){
+			subM.classList.toggle("open-menu")
+		}
+	</script>
 	</body>

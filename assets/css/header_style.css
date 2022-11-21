@@ -129,3 +129,69 @@
 .nav-container-secundary a:hover {
 	color: #b4ad9d;
 }
+
+/*Drop-down do perfil*/
+
+.submenuP{
+	position: absolute;
+	top: 10%;
+	right: -2%;
+	width: 320px;
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height 0.5s;
+
+}
+
+.submenuP.open-menu{
+	max-height: 400px;
+}
+
+.submenu{
+	background-color: #f0f2f5;
+	padding: 20px;
+	margin: 20px;
+}
+
+.userinfo{
+	display: flex;
+	align-items: center;
+}
+
+.userinfo h3{
+	font-weight: 500;
+
+}
+
+.submenu hr{
+	border: 0;
+	height: 1px;
+	width: 100%;
+	background: #ccc;
+	margin: 15px 0 10px;
+}
+
+.submenuL{
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: #525252;
+	margin: 12px 0;
+}
+
+.submenuL p{
+	width: 100%;
+}
+
+.submenuL span{
+	font-size: 22px;
+	transition: transform 0.5s;
+}
+
+.submenuL:hover span{
+	transform: translate(5px);
+}
+
+.submenuL:hover p{
+	font-weight: 600;
+}
