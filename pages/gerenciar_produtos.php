@@ -4,9 +4,33 @@ include('lib/conexao.php');
 include('lib/protect.php');
 protect(1);
 
-$sql_usuarios = "SELECT * FROM produtos";
+/*
+
+1 >   1-8
+2 >   9-16
+3 >   17-24
+
+a2 + b = 9
+a3 + b = 17
+
+b =  9-2a
+3a + 9-2a = 17
+a = 8
+b = -7
+
+8x-7 = y
+
+*/
+
+if(!isset($_GET['row']) || $_GET['row']==1) {
+    $sql_usuarios = "SELECT * FROM produtos LIMIT 8";
+} else {
+    $inicial = (intval($_GET['row'])*8) - 8;
+    $sql_usuarios = "SELECT * FROM produtos LIMIT $inicial, 8";
+}
+
 $sql_query = $mysqli->query($sql_usuarios) or die($mysqli->error);
-$num_produtos = $sql_query->num_rows;
+$num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
 
 ?>
 
@@ -14,11 +38,11 @@ $num_produtos = $sql_query->num_rows;
 <div class="page-wrapper">
     <div class="content-box">
         <div class="admin">
-            <a href="#">Cadastrar produto</a>
+            <a href="?p=cadastrar_produto">Cadastrar produto</a>
             <form action="" method="GET" class="admin-search">
                 <input type="hidden" name="p" value="gerenciar_produtos">
                 <input type="text" name="search" value="<?php if(isset($_GET['search'])) echo $_GET['search'];?>" placeholder="Digite o filtro" />
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Buscar">
             </form>
         </div>
         <table class="content-table">
@@ -47,27 +71,43 @@ $num_produtos = $sql_query->num_rows;
                 ?>
                 <tr>
                     <td><?php echo $produto['id'] ?></td>
-                    <td><img src="upload/<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
+                    <td><img src="<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
                     <td><?php echo $produto['nome'] ?></td>
                     <td><?php echo formatar_valor($produto['valor']) ?></td>
                     <td><?php echo $produto['estoque'] ?></td>
                     <td><?php echo $produto['categoria'] ?></td>
                     <td><?php echo formatar_data($produto['data_cadastro']) ?></td>
-                    <td><a href="">Editar</a></td>
-                    <td><a href="">Deletar</a></td>
+                    <td><a href="?p=editar_produto&id=<?php echo $produto['id'] ?>">Editar</a></td>
+                    <td><a href="?p=deletar_produto&id=<?php echo $produto['id'] ?>">Deletar</a></td>
                 </tr>
                 <?php
                         }
                     }
                 } else {
+                    
                     $pesquisa = $mysqli->real_escape_string($_GET['search']);
-                    $sql_code = "SELECT * FROM produtos
-                                WHERE nome LIKE '%$pesquisa%' 
-                                OR categoria LIKE '%$pesquisa%'
-                                OR id LIKE '%$pesquisa%'";
+                    if(!isset($_GET['row']) || $_GET['row']<=1) {
+                        $sql_code = "SELECT * FROM produtos
+                                    WHERE nome LIKE '%$pesquisa%' 
+                                    OR categoria LIKE '%$pesquisa%'
+                                    OR id LIKE '%$pesquisa%'
+                                    LIMIT 8";
+                    } else {
+                        $inicial = (intval($_GET['row'])*8) - 8;
+                        $sql_code = "SELECT * FROM produtos
+                                    WHERE nome LIKE '%$pesquisa%' 
+                                    OR categoria LIKE '%$pesquisa%'
+                                    OR id LIKE '%$pesquisa%'
+                                    LIMIT $inicial, 8";
+                    }
+                    $num_pesquisa = $mysqli->query("SELECT * FROM produtos
+                                                    WHERE nome LIKE '%$pesquisa%' 
+                                                    OR categoria LIKE '%$pesquisa%'
+                                                    OR id LIKE '%$pesquisa%'")->num_rows;
                     $sql_query = $mysqli->query($sql_code) or die("ERRO ao consultar! " . $mysqli->error);
             
-                    if ($sql_query->num_rows == 0) {
+                    $qtd_resultado = $sql_query->num_rows;
+                    if ($qtd_resultado == 0) {
                         ?>
                 <tr>
                     <td colspan="9">Nenhum resultado encontrado...</td>
@@ -77,14 +117,14 @@ $num_produtos = $sql_query->num_rows;
                         ?>
                 <tr>
                     <td><?php echo $produto['id'] ?></td>
-                    <td><img src="upload/<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
+                    <td><img src="<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
                     <td><?php echo $produto['nome'] ?></td>
                     <td><?php echo formatar_valor($produto['valor']) ?></td>
                     <td><?php echo $produto['estoque'] ?></td>
                     <td><?php echo $produto['categoria'] ?></td>
                     <td><?php echo formatar_data($produto['data_cadastro']) ?></td>
-                    <td><a href="">Editar</a></td>
-                    <td><a href="">Deletar</a></td>
+                    <td><a href="?p=editar_produto&id=<?php echo $produto['id'] ?>">Editar</a></td>
+                    <td><a href="?p=deletar_produto&id=<?php echo $produto['id'] ?>">Deletar</a></td>
                 </tr>
                 <?php
                         }
@@ -93,5 +133,18 @@ $num_produtos = $sql_query->num_rows;
                 ?>
             </tbody>
         </table>
+        <?php 
+        if(isset($_GET['search'])) {
+            $qtd_rows = intdiv($num_pesquisa, 8);
+            for($i=1; $i<$qtd_rows+2; $i++) {
+                echo "<a href='?p=gerenciar_produtos&search=$pesquisa&row=$i'>$i</a>/";
+            }
+        } else {
+            $qtd_rows = intdiv($num_produtos, 8);
+            for($i=1; $i<$qtd_rows+2; $i++) {
+                echo "<a href='?p=gerenciar_produtos&row=$i'>$i</a>/";
+            }
+        }
+        ?>
     </div>
 </div>

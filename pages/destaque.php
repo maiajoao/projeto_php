@@ -25,7 +25,7 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
             <div class="container-produto">
                 <?php while($destaque = $sql_query->fetch_assoc()) { ?>
                 <div class="produto">
-                    <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>"><img src="upload/<?php echo $destaque['imagem'] ?>" alt="<?php echo $destaque['nome'] ?>"></a>
+                    <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>"><img src="<?php echo $destaque['imagem'] ?>" alt="<?php echo $destaque['nome'] ?>"></a>
                     <div class="desc-produto">
                         <span><?php echo $destaque['nome'] ?></span>
                         <h4>R$ <?php echo $destaque['valor'] ?></h4>
