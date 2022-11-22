@@ -1,10 +1,23 @@
+<?php
+
+include('lib/conexao.php');
+include('lib/protect.php');
+protect(1);
+
+$sql_usuarios = "SELECT * FROM produtos";
+$sql_query = $mysqli->query($sql_usuarios) or die($mysqli->error);
+$num_produtos = $sql_query->num_rows;
+
+?>
+
 <link rel="stylesheet" href="assets/css/table_style.css" />
 <div class="page-wrapper">
     <div class="content-box">
         <div class="admin">
             <a href="#">Cadastrar produto</a>
-            <form action="" class="admin-search">
-                <input type="text" name="" id="" placeholder="Digite o filtro" />
+            <form action="" method="GET" class="admin-search">
+                <input type="hidden" name="p" value="gerenciar_produtos">
+                <input type="text" name="search" value="<?php if(isset($_GET['search'])) echo $_GET['search'];?>" placeholder="Digite o filtro" />
                 <input type="submit" value="Enviar">
             </form>
         </div>
@@ -22,41 +35,62 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                if(!isset($_GET['search'])) {
+                    if($num_produtos == 0) { ?>
+                    <tr>
+                        <td colspan="9">Nenhum produto cadastrado!</td>
+                    </tr>
+                <?php 
+                    } else { 
+                        while($produto = $sql_query->fetch_assoc()) {
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td><img src="assets/img/mangas/op100.jpg" alt="" width="80"></td>
-                    <td>One Piece - 100</td>
-                    <td>R$79,90</td>
-                    <td>4</td>
-                    <td>Destaques</td>
-                    <td>14/11/2022</td>
+                    <td><?php echo $produto['id'] ?></td>
+                    <td><img src="upload/<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
+                    <td><?php echo $produto['nome'] ?></td>
+                    <td><?php echo formatar_valor($produto['valor']) ?></td>
+                    <td><?php echo $produto['estoque'] ?></td>
+                    <td><?php echo $produto['categoria'] ?></td>
+                    <td><?php echo formatar_data($produto['data_cadastro']) ?></td>
                     <td><a href="">Editar</a></td>
                     <td><a href="">Deletar</a></td>
                 </tr>
+                <?php
+                        }
+                    }
+                } else {
+                    $pesquisa = $mysqli->real_escape_string($_GET['search']);
+                    $sql_code = "SELECT * FROM produtos
+                                WHERE nome LIKE '%$pesquisa%' 
+                                OR categoria LIKE '%$pesquisa%'
+                                OR id LIKE '%$pesquisa%'";
+                    $sql_query = $mysqli->query($sql_code) or die("ERRO ao consultar! " . $mysqli->error);
+            
+                    if ($sql_query->num_rows == 0) {
+                        ?>
                 <tr>
-                    <td>1</td>
-                    <td><img src="assets/img/mangas/op101.jpg" alt="" width="80"></td>
-                    <td>One Piece - 101</td>
-                    <td>R$79,90</td>
-                    <td>4</td>
-                    <td>Destaques</td>
-                    <td>14/11/2022</td>
+                    <td colspan="9">Nenhum resultado encontrado...</td>
+                </tr>
+                <?php } else {
+                    while($produto = $sql_query->fetch_assoc()) {
+                        ?>
+                <tr>
+                    <td><?php echo $produto['id'] ?></td>
+                    <td><img src="upload/<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
+                    <td><?php echo $produto['nome'] ?></td>
+                    <td><?php echo formatar_valor($produto['valor']) ?></td>
+                    <td><?php echo $produto['estoque'] ?></td>
+                    <td><?php echo $produto['categoria'] ?></td>
+                    <td><?php echo formatar_data($produto['data_cadastro']) ?></td>
                     <td><a href="">Editar</a></td>
                     <td><a href="">Deletar</a></td>
-
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td><img src="assets/img/mangas/chainsaw1.jpg" alt="" width="80"></td>
-                    <td>Chainsaw Man - 1</td>
-                    <td>R$79,90</td>
-                    <td>4</td>
-                    <td>Destaques</td>
-                    <td>14/11/2022</td>
-                    <td><a href="">Editar</a></td>
-                    <td><a href="">Deletar</a></td>
-
-                </tr>
+                <?php
+                        }
+                    }
+                }
+                ?>
             </tbody>
         </table>
     </div>

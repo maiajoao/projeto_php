@@ -11,3 +11,17 @@ if($mysqli->connect_errno) {
     die("Erro na conexão - $mysqli->connect_error");
 }
 
+if (!function_exists("formatar_valor")) {
+    function formatar_valor($valor)
+    {
+        $preco = "R$" . number_format($valor, 2, ",", ".");
+        return $preco;
+    }
+}
+
+if (!function_exists("formatar_data")) {
+    function formatar_data($data)
+    {
+        return date('d/m/Y', strtotime($data));
+    }
+}

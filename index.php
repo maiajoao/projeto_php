@@ -2,8 +2,6 @@
 // Conexão com o Banco de dados
 include('lib/conexao.php');
 
-// Protejer contra contas não logadas
-
 // Caso não tenha iniciado uma sessão
 if (!isset($_SESSION)) {
     session_start();
@@ -18,8 +16,6 @@ if (isset($_GET['p'])) {
         $pagina = 'erro.php';
     }
 }
-
-// Coletar os dados do usuário logado
 
 ?>
 
@@ -41,7 +37,7 @@ if (isset($_GET['p'])) {
     <header>
         <nav class="principal-nav">
             <div class="nav-container">
-                <a href="" class="brand">
+                <a href="index.php" class="brand">
                     <h1>
                         <span id="brand-name1">Manga</span><span id="brand-name2">Xpress</span>
                     </h1>
