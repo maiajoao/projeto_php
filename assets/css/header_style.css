@@ -131,11 +131,13 @@
 }
 
 /*Drop-down do perfil*/
-
+.principal-nav{
+	position: relative;
+}
 .submenuP{
 	position: absolute;
-	top: 10%;
-	right: -2%;
+	right:	10%;
+	top: 50px;
 	width: 320px;
 	max-height: 0px;
 	overflow: hidden;
