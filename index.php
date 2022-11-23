@@ -35,47 +35,69 @@ if (isset($_GET['p'])) {
 
 <body>
     <header>
-        <nav class="principal-nav">
-            <div class="nav-container">
-                <a href="index.php" class="brand">
-                    <h1>
-                        <span id="brand-name1">Manga</span><span id="brand-name2">Xpress</span>
-                    </h1>
-                </a>
-                <div class="search">
-                    <input type="text" name="search-bar" id="#" class="search-bar" />
-                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </div>
-                <div class="menu">
-                    <?php if (isset($_SESSION['admin'])) {
-                        if ($_SESSION['admin'] == 1) {
-                            echo '<a href="?p=gerenciar_usuarios"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
-                        }
-                    } ?>
-                    <a href="<?php if (empty($_SESSION)) {
+			<nav class="principal-nav">
+				<div class="nav-container">
+					<a href="" class="brand">
+						<h1>
+							<span id="brand-name1">Manga</span
+							><span id="brand-name2">Xpress</span>
+						</h1>
+					</a>
+					<div class="search">
+						<input type="text" name="#" id="#" class="search-bar" />
+						<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+					</div>
+					<div class="menu">
+						<a href="#"><i class="fa-solid fa-user" onclick="toggleMenu()"></i></a>
+						<a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+						<a href="#"><i class="fa-solid fa-heart"></i></a>
+						<a href="#"><i class="fa-solid fa-bookmark"></i></a>
+					</div>
+					<div class="submenuP" id="subM">
+						<div class="submenu">
+							<div class="userinfo">
+								<h3> Olá, usuário</h3> <!--Alguém q consiga colocar o usuário como o nome pre-selecionado poe pls-->
+							</div>
+							<hr>
+							<a href="<?php if (empty($_SESSION)) {
                                     echo 'login.php';
                                 } else {
                                     echo '?p=perfil';
-                                } ?>"><i class="fa-solid fa-user"></i></a>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#"><i class="fa-solid fa-heart"></i></a>
-                    <a href="#"><i class="fa-solid fa-bookmark"></i></a>
-                </div>
-                <button class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-        <nav class="secundary-nav">
-            <div class="nav-container-secundary">
-                <a href="?p=destaque">Destaques</a>
-                <a href="?p=lancamento">Lançamentos</a>
-                <a href="?p=pre-venda">Pré-vendas</a>
-            </div>
-        </nav>
-    </header>
+                                } ?>" class="submenuL">
+								<p>Perfil</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Configurações</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Ajuda & Suporte</p>
+								<span>></span>
+							</a>
+							<a href="#" class="submenuL">
+								<p>Sair</p>
+								<span>></span>
+							</a>
+						</div>
+					</div>
+					<button class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+			</nav>
+			<nav class="secundary-nav">
+				<div class="nav-container-secundary">
+					<a href="">Destaques</a>
+					<a href="">Lançamentos</a>
+					<a href="">Pré-vendas</a>
+				</div>
+			</nav>
+
+			
+		</header>
 
     <main>
         <?php include('pages/' . $pagina); ?>
