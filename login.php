@@ -16,6 +16,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
                 session_start();
 
             $_SESSION['usuario'] = $usuario['id'];
+            $_SESSION['nome_usuario'] = $usuario['nome']; 
             $_SESSION['admin'] = $usuario['admin'];
             header("Location: index.php");
         } else {
