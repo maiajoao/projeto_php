@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['enviar'])) {
+if (isset($_POST['registrar'])) {
     include('lib/conexao.php');
 
     $nome = $mysqli->real_escape_string($_POST['nome']);
@@ -59,41 +59,54 @@ if (isset($_POST['enviar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/682b28ed24.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/css/auth_style.css">
+    <title>Login - MangaXpress</title>
 </head>
 
 <body>
-    <?php if (isset($erro) && count($erro) > 0) {
-    ?>
-        <div class="alert alert-danger" role="alert">
-            <?php foreach ($erro as $e) {
-                echo "$e<br>";
-            } ?>
-        </div>
-    <?php
-    }
-    ?>
-    <h3>Formulário Cadastro</h3>
-    <form action="" method="post">
-        <p>
-            Nome:
-            <input type="text" name="nome" id="">
-        </p>
-        <p>
-            Email:
-            <input type="email" name="email" id="">
-        </p>
-        <p>
-            Senha:
-            <input type="text" name="senha" id="">
-        </p>
-        <p>
-            Repetir senha:
-            <input type="text" name="rsenha" id="">
-        </p>
-        <button type="submit" name="enviar" value="1">Cadastrar</button>
+    <img src="assets/img/backgrounds/sanji.png" height="750px">
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <div class="auth-content">
+                    <div class="auth-title">
+                        <a href="index.php"><i class="fa-solid fa-house"></i>/</a>
+                        <span class="title">Registrar</span>
+                    </div>
+                </div>
 
-    </form>
+                <form action="" method="POST">
+                    <div class="input-field">
+                        <input type="text" name="nome" placeholder="Coloque seu nome" required>
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="email" placeholder="Coloque seu email" required>
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="senha" placeholder="Coloque sua senha" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="rsenha" placeholder="Confirme sua senha" required>
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" name="registrar" value="Registrar agora">
+                    </div>
+
+                    <div class="login-signup">
+                        <span class="text">Já tem cadastro?
+                            <a href="login.php" class="text signup-text">Logar agora</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
