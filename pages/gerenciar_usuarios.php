@@ -48,9 +48,9 @@ $num_usuarios = $sql_query->num_rows;
                     <td><?php echo $usuario['nome'] ?></td>
                     <td><?php echo $usuario['email'] ?></td>
                     <td><?php echo formatar_data($usuario['data_cadastro']) ?></td>
-                    <td><a href="">Editar</a></td>
+                    <td><a href="?p=editar_usuario&id=<?php echo $usuario['id'];?>">Editar</a></td>
                     <?php if(!(intval($usuario['id']) == intval($_SESSION['usuario']))) { ?>
-                        <td><a href="?p=deletar_usuario&id=<?php echo $usuaio['id'];?>">Deletar</a></td>
+                        <td><a href="?p=deletar_usuario&id=<?php echo $usuario['id'];?>">Deletar</a></td>
                     <?php } ?>
                 </tr>
                 <?php
@@ -77,7 +77,7 @@ $num_usuarios = $sql_query->num_rows;
                     <td><?php echo $usuario['nome'] ?></td>
                     <td><?php echo $usuario['email'] ?></td>
                     <td><?php echo formatar_data($usuario['data_cadastro']) ?></td>
-                    <td><a href="">Editar</a></td>
+                    <td><a href="?p=editar_usuario&id=<?php echo $usuaio['id'];?>">Editar</a></td>
                     <?php if(!(intval($usuario['id']) == intval($_SESSION['usuario']))) { ?>
                         <td><a href="?p=deletar_usuario&id=<?php echo $usuaio['id'];?>">Deletar</a></td>
                     <?php } ?>

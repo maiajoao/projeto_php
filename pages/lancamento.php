@@ -1,3 +1,10 @@
+<?php
+
+$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'lancamento' LIMIT 16");
+
+
+?>
+
 
 <link rel="stylesheet" href="assets/css/pages_style.css">
 <section id="hero">
@@ -17,38 +24,14 @@
             <h2>Mangás em Lançamento</h2>
             <p>Nossos produtos mais recentes</p>
             <div class="container-produto">
+            <?php while($lancamento = $sql_query->fetch_assoc()) { ?>
                 <div class="produto">
-                    <img src="assets/img/mangas/haikyu3.jpg" alt="haikyu-vol3">
+                    <a href="<?php echo '?p=produto&id=' . $lancamento['id'] ?>"><img src="<?php echo $lancamento['imagem'] ?>" alt="<?php echo $lancamento['nome'] ?>" height="350px"></a>
                     <div class="desc-produto">
-                        <span>Haikyu - Volume 3</span>
-                        <h4>R$69,90</h4>
+                        <span><?php echo $lancamento['nome'] ?></span>
+                        <h4>R$ <?php echo $lancamento['valor'] ?></h4>
                     </div>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
-                <div class="produto">
-                    <img src="assets/img/mangas/hxh22.jpg" alt="hxh-vol22">
-                    <div class="desc-produto">
-                        <span>Hunter x Hunter - Volume 22</span>
-                        <h4>R$25,90</h4>
-                    </div>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
-                <div class="produto">
-                    <img src="assets/img/mangas/berserk1.jpg" alt="berserk-vol1">
-                    <div class="desc-produto">
-                        <span>Berserk - Volume 1</span>
-                        <h4>R$29,90</h4>
-                    </div>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
-                <div class="produto">
-                    <img src="assets/img/mangas/dn3.jpg" alt="deathnote-vol3">
-                    <div class="desc-produto">
-                        <span>Death Note Black Edition - Volume 3</span>
-                        <h4>R$69,90</h4>
-                    </div>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
+                </div> <?php } ?>
             </div>
         </section>
     </div>

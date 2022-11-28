@@ -124,6 +124,7 @@
 	font-size: 18px;
 	transition: 0.4s;
 	color: #f0f2f5;
+	text-decoration: none;
 }
 
 .nav-container-secundary a:hover {
@@ -136,13 +137,13 @@
 }
 .submenuP{
 	position: absolute;
-	right:	10%;
+	right:	7%;
 	top: 50px;
 	width: 320px;
 	max-height: 0px;
 	overflow: hidden;
 	transition: max-height 0.5s;
-
+	z-index: 10;
 }
 
 .submenuP.open-menu{

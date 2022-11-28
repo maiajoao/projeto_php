@@ -18,10 +18,9 @@ body {
 	right: 10%;
 	bottom: 18%;
 	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: url('../img/erro404/p404.png'), #151729;
+	display: grid;
+	place-items: center;
+	z-index: 0;
 }
 
 #container .content {

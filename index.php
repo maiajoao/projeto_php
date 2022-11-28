@@ -37,7 +37,7 @@ if (isset($_GET['p'])) {
     <header>
         <nav class="principal-nav">
             <div class="nav-container">
-                <a href="" class="brand">
+                <a href="index.php" class="brand">
                     <h1>
                         <span id="brand-name1">Manga</span
                         ><span id="brand-name2">Xpress</span>
@@ -54,8 +54,7 @@ if (isset($_GET['p'])) {
                         }
                     } ?>
                     <a href="#"><i class="fa-solid fa-user" onclick="toggleMenu()"></i></a>
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#"><i class="fa-solid fa-heart"></i></a>
+                    <a href="?p=carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a href="#"><i class="fa-solid fa-bookmark"></i></a>
                 </div>
                 <div class="submenuP" id="subM">
@@ -105,9 +104,9 @@ if (isset($_GET['p'])) {
         </nav>
         <nav class="secundary-nav">
             <div class="nav-container-secundary">
-                <a href="">Destaques</a>
-                <a href="">Lançamentos</a>
-                <a href="">Pré-vendas</a>
+                <a href="?p=destaque">Destaques</a>
+                <a href="?p=lancamento">Lançamentos</a>
+                <a href="?p=pre-venda">Pré-vendas</a>
             </div>
         </nav>
 

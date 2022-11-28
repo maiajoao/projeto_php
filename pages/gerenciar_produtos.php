@@ -135,12 +135,12 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
         </table>
         <?php 
         if(isset($_GET['search'])) {
-            $qtd_rows = intdiv($num_pesquisa, 8);
+            $qtd_rows = intdiv($num_pesquisa, 9);
             for($i=1; $i<$qtd_rows+2; $i++) {
                 echo "<a href='?p=gerenciar_produtos&search=$pesquisa&row=$i'>$i</a>/";
             }
         } else {
-            $qtd_rows = intdiv($num_produtos, 8);
+            $qtd_rows = intdiv($num_produtos, 9);
             for($i=1; $i<$qtd_rows+2; $i++) {
                 echo "<a href='?p=gerenciar_produtos&row=$i'>$i</a>/";
             }

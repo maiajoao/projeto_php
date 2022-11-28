@@ -65,7 +65,7 @@ if (isset($_POST['registrar'])) {
 </head>
 
 <body>
-    <img src="assets/img/backgrounds/sanji.png" height="750px">
+    <img src="assets/img/backgrounds/RoronoaZoro.png" height="750px">
     <div class="container">
         <div class="forms">
             <div class="form login">
