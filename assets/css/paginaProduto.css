@@ -74,7 +74,11 @@ main {
 	border-radius: 0 10px 10px 0;
 }
 
-.contentCase .counter input {
+.contentCase .counter form {
+	display: inline-flex;
+}
+
+.contentCase .counter form input {
 	width: 20px;
 	margin-left: 3px;
 	border: none;

@@ -51,6 +51,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                     <th>#</th>
                     <th>IMAGEM</th>
                     <th>NOME</th>
+                    <th>AUTOR</th>
                     <th>VALOR</th>
                     <th>ESTOQUE</th>
                     <th>CATEGORIA</th>
@@ -63,7 +64,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                 if(!isset($_GET['search'])) {
                     if($num_produtos == 0) { ?>
                     <tr>
-                        <td colspan="9">Nenhum produto cadastrado!</td>
+                        <td colspan="10">Nenhum produto cadastrado!</td>
                     </tr>
                 <?php 
                     } else { 
@@ -73,6 +74,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                     <td><?php echo $produto['id'] ?></td>
                     <td><img src="<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
                     <td><?php echo $produto['nome'] ?></td>
+                    <td><?php echo $produto['autor'] ?></td>
                     <td><?php echo formatar_valor($produto['valor']) ?></td>
                     <td><?php echo $produto['estoque'] ?></td>
                     <td><?php echo $produto['categoria'] ?></td>
@@ -89,6 +91,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                     if(!isset($_GET['row']) || $_GET['row']<=1) {
                         $sql_code = "SELECT * FROM produtos
                                     WHERE nome LIKE '%$pesquisa%' 
+                                    OR autor LIKE '%$pesquisa%'
                                     OR categoria LIKE '%$pesquisa%'
                                     OR id LIKE '%$pesquisa%'
                                     LIMIT 8";
@@ -96,12 +99,14 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                         $inicial = (intval($_GET['row'])*8) - 8;
                         $sql_code = "SELECT * FROM produtos
                                     WHERE nome LIKE '%$pesquisa%' 
+                                    OR autor LIKE '%$pesquisa%'
                                     OR categoria LIKE '%$pesquisa%'
                                     OR id LIKE '%$pesquisa%'
                                     LIMIT $inicial, 8";
                     }
                     $num_pesquisa = $mysqli->query("SELECT * FROM produtos
                                                     WHERE nome LIKE '%$pesquisa%' 
+                                                    WHERE autor LIKE '%$pesquisa%' 
                                                     OR categoria LIKE '%$pesquisa%'
                                                     OR id LIKE '%$pesquisa%'")->num_rows;
                     $sql_query = $mysqli->query($sql_code) or die("ERRO ao consultar! " . $mysqli->error);
@@ -110,7 +115,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                     if ($qtd_resultado == 0) {
                         ?>
                 <tr>
-                    <td colspan="9">Nenhum resultado encontrado...</td>
+                    <td colspan="10">Nenhum resultado encontrado...</td>
                 </tr>
                 <?php } else {
                     while($produto = $sql_query->fetch_assoc()) {
@@ -119,6 +124,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                     <td><?php echo $produto['id'] ?></td>
                     <td><img src="<?php echo $produto['imagem'] ?>" alt="" width="80"></td>
                     <td><?php echo $produto['nome'] ?></td>
+                    <td><?php echo $produto['autor'] ?></td>
                     <td><?php echo formatar_valor($produto['valor']) ?></td>
                     <td><?php echo $produto['estoque'] ?></td>
                     <td><?php echo $produto['categoria'] ?></td>

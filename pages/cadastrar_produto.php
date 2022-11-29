@@ -7,11 +7,12 @@ protect(1);
 
 if(isset($_POST['nome'])) {
 
-    $nome = $mysqli->escape_string($_POST['nome']);
-    $descricao = $mysqli->escape_string($_POST['descricao']);
-    $preco = $mysqli->escape_string($_POST['preco']);
-    $estoque = $mysqli->escape_string($_POST['estoque']);
-    $categoria = $mysqli->escape_string($_POST['categoria']);
+    $nome = $mysqli->real_escape_string($_POST['nome']);
+    $autor = $mysqli->real_escape_string($_POST['autor']);
+    $descricao = $mysqli->real_escape_string($_POST['descricao']);
+    $preco = $mysqli->real_escape_string($_POST['preco']);
+    $estoque = $mysqli->real_escape_string($_POST['estoque']);
+    $categoria = $mysqli->real_escape_string($_POST['categoria']);
     
     $erro = array();
     if(empty($nome))
@@ -31,8 +32,9 @@ if(isset($_POST['nome'])) {
         $deu_certo = enviarArquivo($_FILES['imagem']['error'], $_FILES['imagem']['size'], $_FILES['imagem']['name'], $_FILES['imagem']['tmp_name']);
         if($deu_certo !== false) {
 
-            $sql_code = "INSERT INTO produtos (nome, descricao, valor, data_cadastro, imagem, estoque, categoria) VALUES(
+            $sql_code = "INSERT INTO produtos (nome, autor, descricao, valor, data_cadastro, imagem, estoque, categoria) VALUES(
                 '$nome',
+                '$autor',
                 '$descricao',
                 '$preco',
                 NOW(),
@@ -60,6 +62,10 @@ if(isset($_POST['nome'])) {
             <p>
                 Nome do produto: 
                 <input type="text" name="nome">
+            </p>
+            <p>
+                Autor: 
+                <input type="text" name="autor">
             </p>
             <p>
                 Descrição: 

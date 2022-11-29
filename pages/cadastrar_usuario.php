@@ -6,11 +6,11 @@ protect(1);
 
 if(isset($_POST['enviar'])) {
 
-    $nome = $mysqli->escape_string($_POST['nome']);
-    $email = $mysqli->escape_string($_POST['email']);
-    $senha = $mysqli->escape_string($_POST['senha']);
-    $rsenha = $mysqli->escape_string($_POST['rsenha']);
-    $admin = $mysqli->escape_string($_POST['admin']);
+    $nome = $mysqli->real_escape_string($_POST['nome']);
+    $email = $mysqli->real_escape_string($_POST['email']);
+    $senha = $mysqli->real_escape_string($_POST['senha']);
+    $rsenha = $mysqli->real_escape_string($_POST['rsenha']);
+    $admin = $mysqli->real_escape_string($_POST['admin']);
 
     $erro = array();
     if(empty($nome))

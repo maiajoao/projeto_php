@@ -115,7 +115,12 @@ if (isset($_GET['p'])) {
     </header>
 
     <main>
-        <?php include('pages/' . $pagina); ?>
+        <?php 
+            include('pages/' . $pagina); 
+            if($pagina == 'erro.php') {
+                exit();
+            }
+        ?>
     </main>
 
     <footer>

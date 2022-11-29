@@ -24,7 +24,7 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
             <p>Nossos produtos mais procurados</p>
             <div class="container-produto">
                 <?php while($destaque = $sql_query->fetch_assoc()) { ?>
-                <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>"">
+                <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>">
                     <div class="produto">
                         <img src="<?php echo $destaque['imagem'] ?>" alt="<?php echo $destaque['nome'] ?>" height="350px">
                         <div class="desc-produto">

@@ -1,12 +1,17 @@
 <?php
+include 'lib/conexao.php';
+
 $id = intval($_GET['id']);
 if ($id == 0)
     header('Location: index.php');
 $sql_query = $mysqli->query("SELECT * FROM produtos WHERE id = '$id'");
+
+if($sql_query->num_rows==0) {
+    include 'pages/erro.php';
+    exit();
+}
+
 $produto = $sql_query->fetch_assoc();
-
-
-
 ?>
 
 <link rel="stylesheet" href="assets/css/paginaProduto.css">
@@ -26,19 +31,22 @@ $produto = $sql_query->fetch_assoc();
                     <i class="fa fa-minus"></i>
                 </button>
             </div>
-            <input class="quantity-product" min="1" max="99" name="quantity" value="1" type="number" id="quantity" disabled>
+            <form action="?p=adicionar_ao_carrinho" id="stock-form" method="POST">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input class="quantity-product" min="1" max="<?php echo $produto['estoque']; ?>" name="quantity" value="1" type="number" id="quantity" required>
+            </form>
             <div class="button-container">
                 <button class="increase" onclick="incrementValue()">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
         </div><br>
-        <button class="a2c" id="addtocart">
+        <button class="a2c" id="addtocart" name="add_to_cart" form="stock-form">
             Adicionar ao carrinho
         </button><br>
         <a href="">
             <button class="a2l" id="addtolist">
-                <i class="fa-solid fa-star"></i>Adicionar a lista
+                <i class="fa-solid fa-star"></i>Adicionar a minha lista
             </button>
         </a>
         <h4>Informações do produto</h4>
@@ -51,8 +59,10 @@ $produto = $sql_query->fetch_assoc();
     function incrementValue() {
         var value = parseInt(document.getElementById('quantity').value, 10);
         value = isNaN(value) ? 0 : value;
-        value++;
-        document.getElementById('quantity').value = value;
+        if(value < <?php echo $produto['estoque']; ?>) {
+            value++;
+            document.getElementById('quantity').value = value;
+        }
     }
 
     function decreaseValue() {
