@@ -93,7 +93,7 @@ body{
 
 #destaques .container-produto{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 20px;
     flex-wrap: wrap;
 }
@@ -106,7 +106,7 @@ body{
     border: 1px solid #5A574F;
     border-radius: 10px;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    margin: 15px 0;
+    margin: 15px 8px;
 }
 
 #destaques .produto img{

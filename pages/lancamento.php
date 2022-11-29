@@ -26,11 +26,13 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'lancament
             <div class="container-produto">
             <?php while($lancamento = $sql_query->fetch_assoc()) { ?>
                 <div class="produto">
-                    <a href="<?php echo '?p=produto&id=' . $lancamento['id'] ?>"><img src="<?php echo $lancamento['imagem'] ?>" alt="<?php echo $lancamento['nome'] ?>" height="350px"></a>
-                    <div class="desc-produto">
-                        <span><?php echo $lancamento['nome'] ?></span>
-                        <h4>R$ <?php echo $lancamento['valor'] ?></h4>
-                    </div>
+                    <a href="<?php echo '?p=produto&id=' . $lancamento['id'] ?>">
+                        <img src="<?php echo $lancamento['imagem'] ?>" alt="<?php echo $lancamento['nome'] ?>" height="350px">
+                        <div class="desc-produto">
+                            <span><?php echo $lancamento['nome'] ?></span>
+                            <h4>R$ <?php echo $lancamento['valor'] ?></h4>
+                        </div>
+                    </a>
                 </div> <?php } ?>
             </div>
         </section>

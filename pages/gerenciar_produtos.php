@@ -104,11 +104,11 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
                                     OR id LIKE '%$pesquisa%'
                                     LIMIT $inicial, 8";
                     }
-                    $num_pesquisa = $mysqli->query("SELECT * FROM produtos
+                    $num_pesquisa = ($mysqli->query("SELECT * FROM produtos
                                                     WHERE nome LIKE '%$pesquisa%' 
-                                                    WHERE autor LIKE '%$pesquisa%' 
+                                                    OR autor LIKE '%$pesquisa%' 
                                                     OR categoria LIKE '%$pesquisa%'
-                                                    OR id LIKE '%$pesquisa%'")->num_rows;
+                                                    OR id LIKE '%$pesquisa%'"))->num_rows;
                     $sql_query = $mysqli->query($sql_code) or die("ERRO ao consultar! " . $mysqli->error);
             
                     $qtd_resultado = $sql_query->num_rows;
@@ -141,13 +141,13 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
         </table>
         <?php 
         if(isset($_GET['search'])) {
-            $qtd_rows = intdiv($num_pesquisa, 9);
-            for($i=1; $i<$qtd_rows+2; $i++) {
+            $qtd_rows = ceil($num_pesquisa/8);
+            for($i=1; $i<$qtd_rows+1; $i++) {
                 echo "<a href='?p=gerenciar_produtos&search=$pesquisa&row=$i'>$i</a>/";
             }
         } else {
-            $qtd_rows = intdiv($num_produtos, 9);
-            for($i=1; $i<$qtd_rows+2; $i++) {
+            $qtd_rows = ceil($num_produtos/8);
+            for($i=1; $i<$qtd_rows+1; $i++) {
                 echo "<a href='?p=gerenciar_produtos&row=$i'>$i</a>/";
             }
         }
