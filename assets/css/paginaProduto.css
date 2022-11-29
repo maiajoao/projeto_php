@@ -130,3 +130,22 @@ main {
 .inline-group .form-control {
 	text-align: right;
 }
+
+.gridcenter {
+	height: 400px;
+	display: grid;
+	place-items: center;
+}
+
+.added-cart i {
+	color: rgb(0, 165, 0);
+	font-size: 30px;
+}
+
+.added-cart i:hover {
+	color: rgb(0, 165, 0);
+}
+
+.added-cart {
+	text-align: center;
+}
