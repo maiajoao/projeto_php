@@ -43,10 +43,11 @@ if (isset($_GET['p'])) {
                         ><span id="brand-name2">Xpress</span>
                     </h1>
                 </a>
-                <div class="search">
-                    <input type="text" name="#" id="#" class="search-bar" />
-                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </div>
+                <form class="search" method="GET">
+                    <input type="hidden" name="p" value="pesquisar">
+                    <input type="text" name="keyword" class="search-bar" placeholder="Busque aqui seu produto">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
                 <div class="menu">
                 <?php if (isset($_SESSION['admin'])) {
                         if ($_SESSION['admin'] == 1) {

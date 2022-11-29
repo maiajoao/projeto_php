@@ -24,13 +24,15 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
             <p>Nossos produtos mais procurados</p>
             <div class="container-produto">
                 <?php while($destaque = $sql_query->fetch_assoc()) { ?>
-                <div class="produto">
-                    <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>"><img src="<?php echo $destaque['imagem'] ?>" alt="<?php echo $destaque['nome'] ?>" height="350px"></a>
-                    <div class="desc-produto">
-                        <span><?php echo $destaque['nome'] ?></span>
-                        <h4>R$ <?php echo $destaque['valor'] ?></h4>
+                <a href="<?php echo '?p=produto&id=' . $destaque['id'] ?>"">
+                    <div class="produto">
+                        <img src="<?php echo $destaque['imagem'] ?>" alt="<?php echo $destaque['nome'] ?>" height="350px">
+                        <div class="desc-produto">
+                            <span><?php echo $destaque['nome'] ?></span>
+                            <h4>R$ <?php echo $destaque['valor'] ?></h4>
+                        </div>
                     </div>
-                </div> <?php } ?>
+                </a> <?php } ?>
             </div>
         </section>
     </div>
