@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="assets/css/erro404.css">
 
-<img src="assets/img/backgrounds/zoro2.png" height="700vh">
+<img src="assets/img/backgrounds/zoro2.png" height="70%">
 <div id="container">
     <div class="content">
         <h2>404</h2>
