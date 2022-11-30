@@ -9,3 +9,10 @@
         <a href="index.php">Voltar ao menu</a>
     </div>
 </div>
+    
+<script>
+    let subM = document.getElementById("subM")
+    function toggleMenu(){
+        subM.classList.toggle("open-menu")
+    }
+</script>
