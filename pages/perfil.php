@@ -29,25 +29,29 @@ if($usuario['admin']) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/perfil.css">
 
     <title>Perfil</title>
 </head>
 <body>
-<form action="">
-    <p>
-        Nome: <?php echo $nome ?>
-    </p>
-    <p>
-        Email: <?php echo $email ?>
-    </p>
-    <p>
-        Data cadastro: <?php echo $data_cadastro ?>
-    </p>
-    <p>
-        Cargo: <?php echo $cargo ?>
-    </p>
-</form>
-<a href="logout.php">Sair</a>
+<div class="container">
+    <h1>Meu perfil</h1>
+    <form action="">
+        <p>
+            Nome: <?php echo $nome ?>
+        </p>
+        <p>
+            Email: <?php echo $email ?>
+        </p>
+        <p>
+            Data de cadastro: <?php echo $data_cadastro ?>
+        </p>
+        <p>
+            Cargo: <?php echo $cargo ?>
+        </p>
+    </form>
+    <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+</div>
 
 </body>
 </html>

@@ -32,11 +32,24 @@ main {
 
 .contentCase .product {
 	margin-top: 2px;
+	margin-bottom: 10px;
 	font-size: 3em;
+	font-weight: 400;
 }
 
 .contentCase h4 {
 	margin-bottom: 10px;
+}
+
+.contentCase .price {
+	font-size: 1.8em;
+}
+
+.contentCase span.price{
+	font-size: 2.5em;
+	padding-left: 10px;
+	font-weight: 500;
+	color: #161616;
 }
 
 .contentCase .details {
@@ -44,43 +57,36 @@ main {
 	text-align: justify;
 }
 
-.contentCase .price {
-	font-size: 1.8em;
-}
-
 .contentCase .counter {
 	display: inline-flex;
-	border: 1px solid rgb(199, 184, 153);
-	border-radius: 10px;
+	border: 1px solid #000;
+	border-radius: 6px;
 	margin-top: 15px;
 }
 
 .contentCase .counter button {
 	border: none;
-	padding: 7px;
-	background-color: rgb(247, 232, 201);
+	padding: 8px;
+	color: #fff;
+	background-color: #161616;
 	cursor: pointer;
+	transition: 0.4s;
 }
 
 .contentCase .counter button:active {
-	background-color: rgb(255, 224, 163);
-}
-
-.contentCase .counter .decrease {
-	border-radius: 10px 0 0 10px;
-}
-
-.contentCase .counter .increase {
-	border-radius: 0 10px 10px 0;
+	background-color: #e5d5a7;
+	transition: 0.4s;
 }
 
 .contentCase .counter form {
 	display: inline-flex;
+	align-content: center;
+	background-color: #fff;
 }
 
 .contentCase .counter form input {
 	width: 20px;
-	margin-left: 3px;
+	margin: 0 8px;
 	border: none;
 }
 
@@ -93,33 +99,45 @@ main {
 .contentCase .a2c {
 	border: none;
 	outline: none;
-	padding: 0.8em 6em;
+	padding: 0.8em 5em;
+	width: 60%;
 	margin: 20px 0 10px 0;
-	font-size: 17px;
+	font-size: 20px;
 	position: relative;
 	box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
-	background-color: rgb(243, 142, 13);
+	background-color: #f48c06;
 	color: #fff;
 	border-radius: 2px;
 	cursor: pointer;
+	transition: 0.4s;
+}
+
+.contentCase .a2c:hover{
+	background-color: #e85d04;
+	transition: 0.4s;
+}
+
+#carrinho{
+	width: 80%;
 }
 
 .contentCase .a2l {
 	border: none;
 	outline: none;
 	padding: 0.6em 5em 0.6em 3.5em;
+	width: 60%;
 	margin-bottom: 50px;
 	font-size: 17px;
 	position: relative;
 	box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
 	background-color: rgb(218, 218, 218);
-	color: rgb(111, 145, 180);
+	color: #000;
 	border-radius: 2px;
 	cursor: pointer;
 }
 
 .contentCase .a2l i {
-	color: orange;
+	color: #f48c06;
 }
 
 .inline-group {

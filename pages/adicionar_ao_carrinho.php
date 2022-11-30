@@ -33,13 +33,13 @@ if (isset($_SESSION["shopping_cart"]) && !empty($_SESSION["shopping_cart"])) {
         'item_quantity'     =>    $_POST["quantity"],
         'item_img'          =>    $produto['imagem']
     );
-    if(!isset($_SESSION)) {
+    if (!isset($_SESSION)) {
         session_start();
     }
     $_SESSION["shopping_cart"][$id] = $item_array;
 }
 
-if(!empty($_SESSION['shopping_cart'])) {
+if (!empty($_SESSION['shopping_cart'])) {
     $total = 0;
     foreach ($_SESSION["shopping_cart"] as $keys => $values) {
         $total += ($values["item_quantity"] * $values["item_price"]);
@@ -53,19 +53,19 @@ if(!empty($_SESSION['shopping_cart'])) {
 
 <div class="container">
     <div class="showCase">
-        <img src="<?php echo $produto['imagem'];?>" alt="product-img" id="currentImg" height="520px">
+        <img src="<?php echo $produto['imagem']; ?>" alt="product-img" id="currentImg" height="520px">
     </div>
     <div class="contentCase gridcenter">
         <div class="added-cart">
             <i class="fa-solid fa-circle-check"></i>
             <h1 class="product">Adicionado ao carrinho.</h1><br>
-            <label for="price" class="price">Subtotal do carrinho:<span class="price"><?php echo formatar_valor($total);?></span></label><br>
+            <label for="price" class="price">Subtotal do carrinho:<span class="price"><?php echo formatar_valor($total); ?></span></label><br>
             <a href="?p=carrinho">
-                <button class="a2c">
+                <button class="a2c" id="carrinho">
                     Ir para o carrinho
                 </button>
             </a><br>
-            
+
         </div>
     </div>
 </div>

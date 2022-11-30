@@ -1,0 +1,29 @@
+.container{
+    background-color: #161616;
+    width: 400px;
+    height: 400px;
+    color: #F0F2F5;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+form{
+    padding: 0px 50px;
+}
+
+form p{
+    font-size: 1.2rem;
+   padding-bottom: 20px;
+}
+
+.container a{
+    display: flex;
+    justify-content: end;
+    margin-top: 70px;
+}

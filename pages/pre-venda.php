@@ -6,7 +6,6 @@
     <h2>Ofertas imperdíveis</h2>
     <h1>Em todos os produtos</h1>
     <p>Economize pagando menos e levando mais!</p>
-    <button>Compre agora</button>
 
 </section>
 <!--!PRODUTOS EM DESTAQUE -->
