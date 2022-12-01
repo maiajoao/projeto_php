@@ -1,7 +1,8 @@
-
 <link rel="stylesheet" href="assets/css/table_style.css" />
+<link rel="stylesheet" href="assets/css/carrinho.css">
 <div class="page-wrapper">
     <div class="content-box">
+        <h1><a href="index.php"><i class="fa-solid fa-house"></i>/</a>Carrinho</h1>
         <table class="content-table">
             <thead>
                 <tr>
@@ -40,7 +41,9 @@
                 <tr>
                     <td colspan="6">Nenhum Item no carrinho!</td>
                 </tr>
-            <?php } ?> 
+            <?php } ?>
         </table>
+        <button type="submit" id="continue">Continuar Comprando</button>
+        <button type="submit" id="finish">Finalizar Compra</button>
     </div>
 </div>

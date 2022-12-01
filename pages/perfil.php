@@ -15,7 +15,7 @@ $old_data_cadastro = $usuario['data_cadastro'];
 $data_timestamp = strtotime($old_data_cadastro);
 $data_cadastro = date('d/m/Y', $data_timestamp);
 
-if($usuario['admin']) {
+if ($usuario['admin']) {
     $cargo = 'Admin';
 } else {
     $cargo = 'Usuário';
@@ -25,6 +25,7 @@ if($usuario['admin']) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,25 +34,30 @@ if($usuario['admin']) {
 
     <title>Perfil</title>
 </head>
+
 <body>
-<div class="container">
-    <h1>Meu perfil</h1>
-    <form action="">
-        <p>
-            Nome: <?php echo $nome ?>
-        </p>
-        <p>
-            Email: <?php echo $email ?>
-        </p>
-        <p>
-            Data de cadastro: <?php echo $data_cadastro ?>
-        </p>
-        <p>
-            Cargo: <?php echo $cargo ?>
-        </p>
-    </form>
-    <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
-</div>
+    <div class="container">
+        <div class="name-container">
+            <h1><i class="fa-solid fa-user"></i>
+            </h1>
+            <span id="name">
+                <?php echo $nome ?>
+            </span>
+        </div>
+        <form action="">
+            <p>
+                <i class="fa-solid fa-envelope"></i> <?php echo $email ?>
+            </p>
+            <p>
+                <i class="fa-solid fa-calendar-days"></i> <?php echo $data_cadastro ?>
+            </p>
+            <p>
+                <i class="fa-solid fa-id-card-clip"></i> <?php echo $cargo ?>
+            </p>
+        </form>
+        <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </div>
 
 </body>
+
 </html>
