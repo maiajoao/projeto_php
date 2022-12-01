@@ -37,6 +37,7 @@ $num_produtos = $mysqli->query("SELECT * FROM produtos")->num_rows;
 <link rel="stylesheet" href="assets/css/table_style.css" />
 <div class="page-wrapper">
     <div class="content-box">
+        <h1>Gerenciador de Produtos</h1>
         <div class="admin">
             <a href="?p=cadastrar_produto">Cadastrar produto</a>
             <form action="" method="GET" class="admin-search">

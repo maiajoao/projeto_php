@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 11:06 PM
+-- Generation Time: Dec 01, 2022 at 01:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -50,6 +50,27 @@ CREATE TABLE `compras_produtos` (
   `quantidade` int(10) NOT NULL,
   `valor_unitario` decimal(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lista_favoritos`
+--
+
+CREATE TABLE `lista_favoritos` (
+  `id` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lista_favoritos`
+--
+
+INSERT INTO `lista_favoritos` (`id`, `id_produto`, `id_usuario`) VALUES
+(9, 4, 4),
+(10, 9, 4),
+(13, 38, 4);
 
 -- --------------------------------------------------------
 
@@ -127,7 +148,8 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_cadastro`, `admin`
 (4, 'Administrador', 'admin@admin.com', '$2y$10$phnDfZaOtr06Mn7rIH3zT.mF1S72zzMD5Yv9K75nmiFunzaZPL1Xm', '2022-11-16 11:15:36', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 'Usuário', 'user@user.com', '$2y$10$jQXWFiSfF3x9.TNWxiQCveQWnMuXZNpfXVDs.q50h8SXQJUXVHt3y', '2022-11-16 11:19:16', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'Deku', 'deku@email.com', '$2y$10$p.rO3J4EHF9sDCP9KweeBeaCcjBAZ0oBQeFfHXxmDqJWr.r2o0JnC', '2022-11-16 14:11:14', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'João Victor Nunes de Moura', 'ddtank987minecraft@outlook.com', '$2y$10$ziWPAPaRX3d6iRKS2lZLwuw6FBm1//sVgcNcmv6gzoLYm7NAWZ/Nq', '2022-11-22 21:59:41', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(7, 'João Victor Nunes de Moura', 'ddtank987minecraft@outlook.com', '$2y$10$ziWPAPaRX3d6iRKS2lZLwuw6FBm1//sVgcNcmv6gzoLYm7NAWZ/Nq', '2022-11-22 21:59:41', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'testasd', 'admin@gymworkout.com', '$2y$10$UzbNakfOM4dSQMMV48waK.oJ/pw8Ch/Az3FceHRwXeUXhdnSxZ1ly', '2022-11-30 18:54:58', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -143,6 +165,12 @@ ALTER TABLE `compras`
 -- Indexes for table `compras_produtos`
 --
 ALTER TABLE `compras_produtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lista_favoritos`
+--
+ALTER TABLE `lista_favoritos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -180,10 +208,16 @@ ALTER TABLE `compras_produtos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `lista_favoritos`
+--
+ALTER TABLE `lista_favoritos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -195,7 +229,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

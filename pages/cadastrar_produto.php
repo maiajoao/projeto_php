@@ -55,57 +55,64 @@ if (isset($_POST['nome'])) {
 
 ?>
 
-<link rel="stylesheet" href="assets/css/cadastrar_produto.css">
+<link rel="stylesheet" href="assets/css/admin_cadastro.css">
 
-<div class="page-wrapper">
-    <div class="content-box">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <h1>Cadastrar produto</h1>
-            <p id="image">
-                Imagem:
-                <input type="file" name="imagem" id="file">
-            </p>
-            <p>
-                Produto:
-                <input type="text" name="nome">
-            </p>
-            <p>
-                Autor:
-                <input type="text" name="autor">
-            </p>
-            <p>
-                Preço:
-                <input type="number" min="0.00" max="10000.00" step="0.01" name="preco" placeholder="R$" />
-            </p>
-            <p id="desc">
-                Descrição:
-                <textarea name="descricao" cols="30" rows="4" required></textarea>
-            </p>
-            <p>
-                Estoque:
-                <input type="number" name="estoque" step="1">
-            </p>
-            <p>
-                Categoria:
-                <select name="categoria">
-                    <option value=""></option>
-                    <option value="destaque">Destaque</option>
-                    <option value="lancamento">Lancamento</option>
-                    <option value="pre-venda">pre-venda</option>
-                </select>
-            </p>
-            <?php if (isset($erro) && count($erro) > 0) {
-            ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php foreach ($erro as $e) {
-                        echo "$e<br>";
-                    } ?>
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+            <div class="auth-content">
+                <div class="auth-title">
+                    <a href="?p=gerenciar_usuarios"><i class="fa-solid fa-screwdriver-wrench"></i>/</a>
+                    <span class="title">Cadastrar produto</span>
                 </div>
-            <?php
-            }
-            ?>
+            </div>
 
-            <input type="submit" value="Enviar">
-        </form>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="input-field">
+                    <input type="text" name="nome" placeholder="Nome do produto" required>
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="autor" placeholder="Autor" required>
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <div class="input-field">
+                    <input type="number" min="0.00" max="10000.00" step="0.01" name="preco" placeholder="Preço" />
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="input-field descricao">
+                    <textarea name="descricao" cols="30" rows="4" placeholder="&#10;Descrição do produto" required></textarea>
+                    <i class="fa-solid fa-align-right"></i>
+                </div>
+                <div class="input-field">
+                    <input type="number" name="estoque" step="1" placeholder="Quantidade estoque">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+                <div class="input-field">
+                    <label for="">Categoria: </label>
+                    <select name="categoria" class="custom-select">
+                        <option value="">- - - -</option>
+                        <option value="destaque">Destaque</option>
+                        <option value="lancamento">Lancamento</option>
+                        <option value="pre-venda">pre-venda</option>
+                    </select>
+                </div>
+                <div class="input-field custom-img">
+                    <label for="imagem">
+                        <input type="file" name="imagem" id="imagem">
+                        <i class="fa-regular fa-image"></i>Enviar imagem
+                    </label>
+                </div>
+
+
+                <?php if (isset($erro[3])) { ?>
+                    <span class="error"><?php echo $erro[3]; ?></span>
+                <?php } ?>
+
+                <div class="input-field button">
+                    <input type="submit" name="cadastrar" value="Cadastrar">
+                </div>
+            </form>
+        </div>
     </div>
 </div>

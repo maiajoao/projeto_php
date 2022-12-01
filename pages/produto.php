@@ -10,8 +10,14 @@ if($sql_query->num_rows==0) {
     include 'pages/erro.php';
     exit();
 }
-
 $produto = $sql_query->fetch_assoc();
+
+if(isset($_SESSION['usuario'])) {
+    $id_usuario = $_SESSION['usuario'];
+    $sql_query = $mysqli->query("SELECT * FROM lista_favoritos WHERE id_produto = '$id' AND id_usuario = '$id_usuario'");
+    $favoritado = $sql_query->num_rows;
+}
+
 ?>
 
 <link rel="stylesheet" href="assets/css/paginaProduto.css">
@@ -44,11 +50,21 @@ $produto = $sql_query->fetch_assoc();
         <button class="a2c" id="addtocart" name="add_to_cart" form="stock-form">
             Adicionar ao carrinho
         </button><br>
-        <a href="">
+        <form action="?p=adicionar_a_lista" method="POST">
             <button class="a2l" id="addtolist">
-                <i class="fa-solid fa-star"></i>Adicionar a minha lista
+                <input type="hidden" name="id" value="<?php echo $id ?>">
+                <?php if(!isset($_SESSION['usuario'])) {
+                    echo '<i class="fa-regular fa-star"></i> Adicionar a minha lista';
+                } else {
+                    if ($favoritado){
+                        echo "<input type=\"hidden\" name=\"favoritado\" value=\"$favoritado\">";
+                        echo '<i class="fa-solid fa-star"></i> Remover da lista';
+                    } else {
+                        echo '<i class="fa-regular fa-star"></i> Adicionar a minha lista';
+                    }
+                } ?>
             </button>
-        </a>
+        </form>
         <h4>Informações do produto</h4>
         <hr>
         <p class="details"><?php echo $produto['descricao'];?></p>
