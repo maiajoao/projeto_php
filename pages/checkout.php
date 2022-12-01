@@ -62,18 +62,21 @@ $usuario = $sql_query->fetch_assoc();
             </table>
             <div class="entrega">
                 <div class="endereco-title">
+                    <?php if(!empty($usuario['endereco1'])) { ?>
+                        <span class="entrega-gratis">Frete grátis para todo o Brasil</span>
+                    <?php } ?>
                     <h2>Endereço de entrega</h2>
                 </div>
+                <?php if(!empty($usuario['endereco1'])) { ?>
                 <div class="infos">
-                    <?php if(!empty($usuario['endereco1'])) { ?>
                     <p><?php echo $usuario['endereco1'] ?></p>
                     <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
                     <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
                     <a href="?p=adicionar_endereco">Alterar endereço</a>
                     <?php } else { ?>
                     <a href="?p=adicionar_endereco">Adicionar endereço</a>
-                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
             <div class="total"><h4> Total do pedido: <?php echo formatar_valor($total); ?></h4></div>
             <button <?php if(empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled"?>>Finalizar pedido</button>

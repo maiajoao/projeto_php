@@ -34,3 +34,8 @@ main {
 	background-color: #e85d04;
 	transition: 0.4s;
 }
+
+.checkout .entrega-gratis {
+	font-weight: bold;
+    color: rgb(30, 139, 8);
+}

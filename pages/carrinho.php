@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="assets/css/table_style.css" />
 <link rel="stylesheet" href="assets/css/carrinho.css">
+
+
 <div class="page-wrapper">
     <div class="content-box">
         <h1><a href="index.php"><i class="fa-solid fa-house"></i>/</a>Carrinho</h1>

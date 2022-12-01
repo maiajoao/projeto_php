@@ -56,7 +56,7 @@ if (isset($_GET['p'])) {
                     } ?>
                     <a href="#"><i class="fa-solid fa-user" onclick="toggleMenu()"></i></a>
                     <a href="?p=carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="#"><i class="fa-solid fa-bookmark"></i></a>
+                    <a href="?p=minha_lista"><i class="fa-solid fa-bookmark"></i></a>
                 </div>
                 <div class="submenuP" id="subM">
                     <div class="submenu">

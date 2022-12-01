@@ -42,7 +42,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
 </head>
 
 <body>
-    <img src="assets/img/backgrounds/trafalgar-law.png" height="600px">
+    <img src="assets/img/backgrounds/trafalgar-law.png" height="70%">
     <div class="container">
         <div class="forms">
             <div class="form login">
