@@ -16,7 +16,7 @@ $usuario = $sql_query->fetch_assoc();
 
 <div class="container">
     <div class="forms">
-        <div class="form login">
+        <div class="form login checkout">
             <div class="auth-content">
                 <div class="auth-title">
                     <a href="index.php"><i class="fa-solid fa-house"></i></a>/<a href="?p=carrinho">carrinho</a>/
@@ -65,14 +65,18 @@ $usuario = $sql_query->fetch_assoc();
                     <h2>Endereço de entrega</h2>
                 </div>
                 <div class="infos">
+                    <?php if(!empty($usuario['endereco1'])) { ?>
                     <p><?php echo $usuario['endereco1'] ?></p>
                     <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
                     <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
                     <a href="?p=adicionar_endereco">Alterar endereço</a>
+                    <?php } else { ?>
+                    <a href="?p=adicionar_endereco">Adicionar endereço</a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="total"><h4> Total do pedido: <?php echo formatar_valor($total); ?></h4></div>
-            <button>Finalizar pedido</button>
+            <button <?php if(empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled"?>>Finalizar pedido</button>
         </div>
     </div>
 </div>

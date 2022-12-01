@@ -39,7 +39,7 @@ if(isset($_POST['registrar'])) {
             <span class="title">Endereço para entrega</span>
             <form action="" method="POST">
                 <div class="input-field">
-                    <input type="text" name="cep" id="cep" placeholder="CEP" maxlength="9" pattern="\d{5}-\d{3}" required>
+                    <input type="text" name="cep" id="cep" placeholder="CEP (00000-000)" maxlength="9" pattern="\d{5}-\d{3}" required>
                     <i class="fa-solid fa-map-location-dot"></i>
                 </div>
                 <div class="input-field">
