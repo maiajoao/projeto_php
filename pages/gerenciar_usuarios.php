@@ -14,6 +14,7 @@ $num_usuarios = $sql_query->num_rows;
 
 <div class="page-wrapper">
     <div class="content-box">
+        <br><br>
         <h1>Gerenciador de Usuários</h1>
         <div class="admin">
             <a href="?p=cadastrar_usuario">Cadastrar usuário</a>

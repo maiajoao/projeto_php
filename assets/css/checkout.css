@@ -1,0 +1,36 @@
+body {
+    height: auto;
+}
+
+main {
+    background: linear-gradient(45deg, #00051b, #c0c0c0);
+}
+
+.total {
+    color: rgb(180, 90, 16);
+}
+
+.infos {
+    margin: 0 0 20px 20px;
+}
+
+.form button {
+	border: none;
+	outline: none;
+	padding: 0.8em 5em;
+	width: 60%;
+	margin: 20px 0 10px 0;
+	font-size: 20px;
+	position: relative;
+	box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+	background-color: #f48c06;
+	color: #fff;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+.form button {
+	background-color: #e85d04;
+	transition: 0.4s;
+}

@@ -7,11 +7,11 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <?php
@@ -43,7 +43,9 @@
                 </tr>
             <?php } ?>
         </table>
-        <button type="submit" id="continue">Continuar Comprando</button>
-        <button type="submit" id="finish">Finalizar Compra</button>
+        <?php if (!empty($_SESSION["shopping_cart"])) { ?>
+        <a href="?p=destaque"><button type="submit" id="continue">Continuar Comprando</button></a>
+        <a href="?p=checkout"><button type="submit" id="finish">Finalizar Compra</button></a>
+        <?php } ?>
     </div>
 </div>
