@@ -15,6 +15,57 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
     <p>Economize pagando menos e levando mais!</p>
 
 </section>
+
+<div class="slider">
+        <div class="slides">
+            <!--Radio buttons-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+
+
+            <!--Imagens-->
+            <div class="slide first">
+                <img src="assets\img\mangas.png" alt="imagem 1">
+            </div>
+            <div class="slide">
+                <img src="assets\img\berserkerslider.png" alt="imagem 2">
+            </div>
+
+
+            <!--Navigation auto-->
+
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+            </div>
+        </div>
+
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+        </div>
+
+
+    </div>
+
+    <script>
+        let count = 1
+        document.getElementById("radio1").checked=true
+
+        setInterval( function(){
+            nextImage()
+        },4000)
+
+        function nextImage(){
+            count++
+            if(count>2){
+                count=1
+            }
+            document.getElementById("radio"+count).checked = true
+        }
+    </script>
+
+
 <!--!PRODUTOS EM DESTAQUE -->
 <div class="page-wrapper">
     <div class="content-box">
