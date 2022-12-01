@@ -13,20 +13,20 @@ if (isset($_POST['registrar'])) {
 
     $erro = array();
     if (empty($nome))
-        $erro[] = "Preencha o nome";
+        $erro[0] = "Preencha o nome";
 
     if (empty($email))
-        $erro[] = "Preencha o e-mail";
+        $erro[1] = "Preencha o e-mail";
 
     if($qntd>0) {
-        $erro[] = "E-mail já cadastrado";
+        $erro[2] = "E-mail já cadastrado";
     }
 
     if (empty($senha))
-        $erro[] = "Preencha a senha";
+        $erro[3] = "Preencha a senha";
 
     if ($rsenha != $senha)
-        $erro[] = "As senhas não batem";
+        $erro[4] = "As senhas não batem";
 
 
     if (count($erro) == 0) {
@@ -78,21 +78,27 @@ if (isset($_POST['registrar'])) {
 
                 <form action="" method="POST">
                     <div class="input-field">
-                        <input type="text" name="nome" placeholder="Coloque seu nome" required>
+                        <input type="text" name="nome" placeholder="Coloque seu nome">
                         <i class="fa-regular fa-user"></i>
                     </div>
+                    <span class="erro"><?php if(isset($erro[0])) echo $erro[0] ?></span>
                     <div class="input-field">
-                        <input type="text" name="email" placeholder="Coloque seu email" required>
+                        <input type="email" name="email" placeholder="Coloque seu email">
                         <i class="fa-regular fa-envelope"></i>
                     </div>
+                    <span class="erro"><?php if(isset($erro[1])) echo $erro[1] ?></span>
+                    <span class="erro"><?php if(isset($erro[2])) echo $erro[2] ?></span>
                     <div class="input-field">
-                        <input type="password" name="senha" placeholder="Coloque sua senha" required>
+                        <input type="password" name="senha" placeholder="Coloque sua senha">
                         <i class="fa-solid fa-lock"></i>
                     </div>
+                    <span class="erro"><?php if(isset($erro[3])) echo $erro[3] ?></span>
+                    
                     <div class="input-field">
-                        <input type="password" name="rsenha" placeholder="Confirme sua senha" required>
+                        <input type="password" name="rsenha" placeholder="Confirme sua senha">
                         <i class="fa-solid fa-lock"></i>
                     </div>
+                    <span class="erro"><?php if(isset($erro[4])) echo $erro[4] ?></span>
 
                     <div class="input-field button">
                         <input type="submit" name="registrar" value="Registrar agora">
