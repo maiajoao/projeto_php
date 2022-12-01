@@ -132,3 +132,7 @@ body {
     margin-top: 30px;
     text-align: center;
 }
+
+.erro {
+    color: rgb(190, 0, 0);
+}
