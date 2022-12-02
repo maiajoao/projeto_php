@@ -20,10 +20,10 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
             $_SESSION['admin'] = $usuario['admin'];
             header("Location: index.php");
         } else {
-            $erro = "Senha inválida";
+            $erro = "E-mail ou senha inválida";
         }
     } else {
-        $erro = "E-mail inválido";
+        $erro = "E-mail ou senha inválida";
     }
 }
 ?>
@@ -55,17 +55,19 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
 
                 <form action="" method="POST">
                     <div class="input-field">
-                        <input type="text" name="email" placeholder="Escreva seu email" required>
+                        <input type="text" name="email" placeholder="Escreva seu email">
                         <i class="fa-regular fa-envelope"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="senha" placeholder="Escreva sua senha" required>
+                        <input type="password" name="senha" placeholder="Escreva sua senha">
                         <i class="fa-solid fa-lock"></i>
                     </div>
-                    
+                    <span class="erro"><?php if(isset($erro)) echo $erro ?></span>
+
                     <div class="forgotpass-text">
-                        <a href="" class="text">Esqueci minha senha</a>
+                        <a href="reset_password.php" class="text">Esqueci minha senha</a>
                     </div>
+                    
 
                     <div class="input-field button">
                         <input type="submit" name="logar" value="Logar agora">

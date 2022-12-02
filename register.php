@@ -12,18 +12,25 @@ if (isset($_POST['registrar'])) {
     $qntd = $sql_query->num_rows;
 
     $erro = array();
-    if (empty($nome))
+    if (empty($nome)) {
         $erro[0] = "Preencha o nome";
+    } else if (strlen($nome) < 4) {
+        $erro[0] = "O nome deve ter no mínimo 4 letras";
+    }
 
-    if (empty($email))
+    if (empty($email)) {
         $erro[1] = "Preencha o e-mail";
-
-    if($qntd>0) {
+    } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erro[1] = "Preencha um email válido";
+    } else if($qntd>0) {
         $erro[2] = "E-mail já cadastrado";
     }
 
-    if (empty($senha))
+    if (empty($senha)) {
         $erro[3] = "Preencha a senha";
+    } else if(strlen($senha) < 4) {
+        $erro[3] = "A senha deve ter no mínimo 4 caracteres";
+    }
 
     if ($rsenha != $senha)
         $erro[4] = "As senhas não batem";
@@ -83,7 +90,7 @@ if (isset($_POST['registrar'])) {
                     </div>
                     <span class="erro"><?php if(isset($erro[0])) echo $erro[0] ?></span>
                     <div class="input-field">
-                        <input type="email" name="email" placeholder="Coloque seu email">
+                        <input type="text" name="email" placeholder="Coloque seu email">
                         <i class="fa-regular fa-envelope"></i>
                     </div>
                     <span class="erro"><?php if(isset($erro[1])) echo $erro[1] ?></span>
@@ -114,5 +121,4 @@ if (isset($_POST['registrar'])) {
         </div>
     </div>
 </body>
-
 </html>

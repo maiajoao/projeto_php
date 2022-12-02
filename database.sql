@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Dez-2022 às 16:37
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Generation Time: Dec 02, 2022 at 06:05 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,43 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `loja_manga`
+-- Database: `loja_manga`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `compras`
---
-
-CREATE TABLE `compras` (
-  `id` int(11) NOT NULL,
-  `cliente_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL,
-  `codigo` varchar(10) NOT NULL,
-  `total` int(11) NOT NULL,
-  `cadastro` datetime NOT NULL,
-  `atualizacao` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `compras_produtos`
---
-
-CREATE TABLE `compras_produtos` (
-  `id` int(11) NOT NULL,
-  `produto_id` int(11) NOT NULL,
-  `compra_id` int(11) NOT NULL,
-  `quantidade` int(10) NOT NULL,
-  `valor_unitario` decimal(8,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `lista_favoritos`
+-- Table structure for table `lista_favoritos`
 --
 
 CREATE TABLE `lista_favoritos` (
@@ -63,19 +33,32 @@ CREATE TABLE `lista_favoritos` (
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `lista_favoritos`
+-- Table structure for table `pedido`
 --
 
-INSERT INTO `lista_favoritos` (`id`, `id_produto`, `id_usuario`) VALUES
-(9, 4, 4),
-(10, 9, 4),
-(13, 38, 4);
+CREATE TABLE `pedido` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `valor_total` double(9,2) NOT NULL,
+  `status` varchar(40) NOT NULL,
+  `data_status` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `id_cliente`, `valor_total`, `status`, `data_status`) VALUES
+(46, 4, 79.00, 'Pedido em separação', '2022-12-02 16:59:10'),
+(47, 4, 79.00, 'Pedido em separação', '2022-12-02 16:59:34');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Table structure for table `produtos`
 --
 
 CREATE TABLE `produtos` (
@@ -91,7 +74,7 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Dumping data for table `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `autor`, `descricao`, `valor`, `data_cadastro`, `imagem`, `estoque`, `categoria`) VALUES
@@ -109,19 +92,7 @@ INSERT INTO `produtos` (`id`, `nome`, `autor`, `descricao`, `valor`, `data_cadas
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `status`
---
-
-CREATE TABLE `status` (
-  `id` int(11) NOT NULL,
-  `id_compra` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -131,7 +102,6 @@ CREATE TABLE `usuarios` (
   `senha` varchar(256) NOT NULL,
   `data_cadastro` datetime NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0,
-  `telefone` varchar(11) DEFAULT NULL,
   `endereco1` varchar(100) DEFAULT NULL,
   `endereco2` varchar(100) DEFAULT NULL,
   `cidade` varchar(100) DEFAULT NULL,
@@ -141,95 +111,69 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_cadastro`, `admin`, `telefone`, `endereco1`, `endereco2`, `cidade`, `bairro`, `estado`, `cep`) VALUES
-(4, 'Administrador', 'admin@admin.com', '$2y$10$phnDfZaOtr06Mn7rIH3zT.mF1S72zzMD5Yv9K75nmiFunzaZPL1Xm', '2022-11-16 11:15:36', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Usuário', 'user@user.com', '$2y$10$jQXWFiSfF3x9.TNWxiQCveQWnMuXZNpfXVDs.q50h8SXQJUXVHt3y', '2022-11-16 11:19:16', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Deku', 'deku@email.com', '$2y$10$p.rO3J4EHF9sDCP9KweeBeaCcjBAZ0oBQeFfHXxmDqJWr.r2o0JnC', '2022-11-16 14:11:14', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'João Victor Nunes de Moura', 'ddtank987minecraft@outlook.com', '$2y$10$ziWPAPaRX3d6iRKS2lZLwuw6FBm1//sVgcNcmv6gzoLYm7NAWZ/Nq', '2022-11-22 21:59:41', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'testasd', 'admin@gymworkout.com', '$2y$10$UzbNakfOM4dSQMMV48waK.oJ/pw8Ch/Az3FceHRwXeUXhdnSxZ1ly', '2022-11-30 18:54:58', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_cadastro`, `admin`, `endereco1`, `endereco2`, `cidade`, `bairro`, `estado`, `cep`) VALUES
+(4, 'Administrador', 'admin@admin.com', '$2y$10$phnDfZaOtr06Mn7rIH3zT.mF1S72zzMD5Yv9K75nmiFunzaZPL1Xm', '2022-11-16 11:15:36', 1, 'Rua Diógenes Chianca, 100', 'Casa', 'João Pessoa', 'Água Fria', 'PB', '58053000'),
+(5, 'Usuário', 'user@user.com', '$2y$10$jQXWFiSfF3x9.TNWxiQCveQWnMuXZNpfXVDs.q50h8SXQJUXVHt3y', '2022-11-16 11:19:16', 0, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Deku', 'deku@email.com', '$2y$10$p.rO3J4EHF9sDCP9KweeBeaCcjBAZ0oBQeFfHXxmDqJWr.r2o0JnC', '2022-11-16 14:11:14', 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `compras`
---
-ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `compras_produtos`
---
-ALTER TABLE `compras_produtos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `lista_favoritos`
+-- Indexes for table `lista_favoritos`
 --
 ALTER TABLE `lista_favoritos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `produtos`
+-- Indexes for table `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `compras`
---
-ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `compras_produtos`
---
-ALTER TABLE `compras_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `lista_favoritos`
+-- AUTO_INCREMENT for table `lista_favoritos`
 --
 ALTER TABLE `lista_favoritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT de tabela `produtos`
+-- AUTO_INCREMENT for table `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT de tabela `status`
---
-ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

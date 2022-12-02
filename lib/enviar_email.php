@@ -27,16 +27,17 @@ function enviar_email($destinatario, $assunto, $mensagemHTML)
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'email@gmail.com';                     //SMTP username
-        $mail->Password   = '';                               //SMTP password
+        $mail->Username   = 'projetophpunipe@gmail.com';                     //SMTP username
+        $mail->Password   = 'ewkhprsfkpbiwthy';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Destinatario
-        $mail->setFrom('email@gmail.com', 'Admin');
+        $mail->setFrom('projetophpunipe@gmail.com', 'MangaXpress');
         $mail->addAddress($destinatario);     //Add email do destinatario
 
         //Conteudo
+        $mail->CharSet="UTF-8";
         $mail->isHTML(true);       //Set email format to HTML
         $mail->Subject = $assunto; //Titulo do email
         $mail->Body    = $mensagemHTML; //Corpo do email

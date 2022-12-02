@@ -1,7 +1,7 @@
 
-main {
-    padding-bottom: 190px;
-    background: linear-gradient(45deg, #00051b, #c0c0c0);
+
+.container {
+    margin: 50px 0 150px;
 }
 
 .lista table { 

@@ -1,12 +1,79 @@
 <?php
 include("lib/conexao.php");
 include("lib/enviar_arquivo.php");
+include('lib/enviar_email.php');
 include('lib/protect.php');
 protect(0);
 
-$user_id = intval($_SESSION['usuario']);
-$sql_query = $mysqli->query("SELECT * FROM usuarios WHERE id='$user_id'");
+if (!isset($_SESSION['shopping_cart']))
+    die("<script>location.href=\"index.php?p=carrinho\";</script>");
+
+
+$id_cliente = intval($_SESSION['usuario']);
+$sql_query = $mysqli->query("SELECT * FROM usuarios WHERE id='$id_cliente'");
 $usuario = $sql_query->fetch_assoc();
+
+if (isset($_POST['finalizar'])) {
+
+    $valor_total = 0;
+    $status = "Pedido em separação";
+
+    if (!isset($_SESSION['shopping_cart']))
+        die("<script>location.href=\"index.php\";</script>");
+
+    foreach ($_SESSION["shopping_cart"] as $key => $value) {
+        $valor_total += ($value["item_quantity"] * $value["item_price"]);
+    }
+
+    $sql_code = "INSERT INTO pedido (id_cliente, valor_total, status) VALUES ('$id_cliente', '$valor_total', '$status')";
+    $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
+
+    $usuario = $mysqli->query("SELECT * FROM usuarios WHERE id = '$id_cliente'")->fetch_assoc();
+
+    ob_start(); ?>
+
+    <h1>Veja o resumo do seu pedido</h1>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Produto</th>
+                <th>Preço unitário</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <?php
+        foreach ($_SESSION["shopping_cart"] as $key => $value) {
+        ?>
+            <tr>
+                <td></td>
+                <td><?php echo $value["item_name"]; ?></td>
+                <td><?php echo formatar_valor($value["item_price"]); ?></td>
+                <td><?php echo $value["item_quantity"]; ?></td>
+                <td><?php echo formatar_valor($value["item_quantity"] * $value['item_price']); ?></td>
+            </tr>
+        <?php }
+        ?>
+        <tr>
+            <td></td>
+            <td colspan="3" align="right">Total</td>
+            <td align="right"><?php echo formatar_valor($valor_total) ?></td>
+        </tr>
+    </table>
+    <br><br>
+    <h2>Endereço de entrega:</h2>
+    <div style="margin-left: 20px;">
+        <p><?php echo $usuario['endereco1'] ?></p>
+        <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
+        <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
+    </div>
+    <?php
+    $html = ob_get_clean();
+    enviar_email($usuario['email'], "Compra realizada com sucesso!", $html);
+
+    die("<script>location.href=\"index.php?p=finalizar_pedido\";</script>");
+}
 
 ?>
 
@@ -39,18 +106,18 @@ $usuario = $sql_query->fetch_assoc();
                 <?php
                 if (!empty($_SESSION["shopping_cart"])) {
                     $total = 0;
-                    foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+                    foreach ($_SESSION["shopping_cart"] as $key => $value) {
                 ?>
                         <tr>
-                            <td><img src="<?php echo $values['item_img'] ?>" alt="" width="80"></td>
-                            <td><?php echo $values["item_name"]; ?></td>
-                            <td><?php echo $values["item_quantity"]; ?></td>
-                            <td><?php echo formatar_valor($values["item_price"]); ?></td>
-                            <td><?php echo formatar_valor($values["item_quantity"] * $values["item_price"]); ?></td>
-                            <td><a href="?p=remover_item_carrinho&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+                            <td><img src="<?php echo $value['item_img'] ?>" alt="" width="80"></td>
+                            <td><?php echo $value["item_name"]; ?></td>
+                            <td><?php echo $value["item_quantity"]; ?></td>
+                            <td><?php echo formatar_valor($value["item_price"]); ?></td>
+                            <td><?php echo formatar_valor($value["item_quantity"] * $value["item_price"]); ?></td>
+                            <td><a href="?p=remover_item_carrinho&id=<?php echo $value["item_id"]; ?>"><span class="text-danger"><i class="fa-solid fa-trash"></i></span></a></td>
                         </tr>
                     <?php
-                        $total += ($values["item_quantity"] * $values["item_price"]);
+                        $total += ($value["item_quantity"] * $value["item_price"]);
                     }
                     ?>
                 <?php
@@ -62,24 +129,26 @@ $usuario = $sql_query->fetch_assoc();
             </table>
             <div class="entrega">
                 <div class="endereco-title">
-                    <?php if(!empty($usuario['endereco1'])) { ?>
+                    <?php if (!empty($usuario['endereco1'])) { ?>
                         <span class="entrega-gratis">Frete grátis para todo o Brasil</span>
                     <?php } ?>
                     <h2>Endereço de entrega</h2>
                 </div>
-                <?php if(!empty($usuario['endereco1'])) { ?>
-                <div class="infos">
-                    <p><?php echo $usuario['endereco1'] ?></p>
-                    <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
-                    <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
-                    <a href="?p=adicionar_endereco">Alterar endereço</a>
+                <?php if (!empty($usuario['endereco1'])) { ?>
+                    <div class="infos">
+                        <p><?php echo $usuario['endereco1'] ?></p>
+                        <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
+                        <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
+                        <a href="?p=adicionar_endereco">Alterar endereço</a>
                     <?php } else { ?>
-                    <a href="?p=adicionar_endereco">Adicionar endereço</a>
-                </div>
+                        <a href="?p=adicionar_endereco">Adicionar endereço</a>
+                    </div>
                 <?php } ?>
+                <div class="total">
+                    <h4> Total do pedido: <?php echo formatar_valor($total); ?></h4>
+                </div>
+                <form action="" method="POST"><button name="finalizar" value="1" <?php if (empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled" ?>>Finalizar pedido</button></form>
             </div>
-            <div class="total"><h4> Total do pedido: <?php echo formatar_valor($total); ?></h4></div>
-            <button <?php if(empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled"?>>Finalizar pedido</button>
         </div>
     </div>
 </div>
