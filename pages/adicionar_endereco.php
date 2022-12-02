@@ -15,6 +15,9 @@ if(isset($_POST['registrar'])) {
     $bairro = $mysqli->real_escape_string($_POST['bairro']);
     $estado = $mysqli->real_escape_string($_POST['estado']);
     $cep = $mysqli->real_escape_string($_POST['cep']);
+    if(strlen($cep) == 8) {
+        $cep = substr($cep, 0, 5) . "-" . substr($cep, 5, 8);
+    }
 
     $mysqli->query("UPDATE usuarios SET endereco1='$endereco', endereco2='$complemento', cidade='$cidade', bairro='$bairro', estado='$estado', cep='$cep' WHERE id='$user_id'");
     die("<script>location.href=\"index.php?p=checkout\";</script>");
@@ -39,7 +42,7 @@ if(isset($_POST['registrar'])) {
             <span class="title">Endereço para entrega</span>
             <form action="" method="POST">
                 <div class="input-field">
-                    <input type="text" name="cep" id="cep" placeholder="CEP" maxlength="8" required>
+                    <input type="text" name="cep" id="cep" placeholder="CEP" minlength="8" maxlength="9" pattern="\d{5}-?\d{3}" required>
                     <i class="fa-solid fa-map-location-dot"></i>
                 </div>
                 <div class="input-field">
