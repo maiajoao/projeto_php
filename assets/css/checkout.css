@@ -39,3 +39,26 @@ main {
 	font-weight: bold;
     color: rgb(30, 139, 8);
 }
+
+.loader{
+    position: absolute;
+    top: 9px;
+    left: 80%;
+    width: 1vw;
+    height: 1vw;
+    display: flex;
+    pointer-events: none;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: an1 1s ease infinite;
+}
+
+@keyframes an1{
+    0%{
+        transform: rotate(0turn);
+    }
+    100%{
+        transform: rotate(1turn);
+    }
+}
