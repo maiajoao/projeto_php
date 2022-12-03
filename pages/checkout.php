@@ -159,6 +159,6 @@ if (isset($_POST['finalizar'])) {
                 this.innerHTML= "Registrado"
                 },2000)
                 }
-</script>
     </script>
+
 </div>
