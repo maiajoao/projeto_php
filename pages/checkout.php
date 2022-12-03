@@ -147,8 +147,18 @@ if (isset($_POST['finalizar'])) {
                 <div class="total">
                     <h4> Total do pedido: <?php echo formatar_valor($total); ?></h4>
                 </div>
-                <form action="" method="POST"><button name="finalizar" value="1" <?php if (empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled" ?>>Finalizar pedido</button></form>
+                <form action="" method="POST"><button class="buttonS" name="finalizar" value="1" <?php if (empty($usuario['endereco1'])) echo "style='background-color:#754b31; color: rgba(255, 255, 255, 0.3); cursor: not-allowed' disabled" ?>>Finalizar pedido</button></form>
             </div>
         </div>
     </div>
+    <script>
+        let submit = document.querySelector(".buttonS")
+            submit.onclick = function(){
+                this.innerHTML= "<div class='loader'></div>"
+                setTimeout(() =>{
+                this.innerHTML= "Registrado"
+                },2000)
+                }
+</script>
+    </script>
 </div>
