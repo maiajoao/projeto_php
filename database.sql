@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2022 at 06:05 PM
+-- Generation Time: Dec 03, 2022 at 03:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -24,6 +24,56 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `compras`
+--
+
+CREATE TABLE `compras` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `valor_total` double(9,2) NOT NULL,
+  `status` varchar(40) NOT NULL,
+  `data_status` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `data_compra` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compras`
+--
+
+INSERT INTO `compras` (`id`, `id_cliente`, `valor_total`, `status`, `data_status`, `data_compra`) VALUES
+(65, 13, 34.90, 'Pedido em separação', '2022-12-03 01:54:40', '2022-12-02 22:54:40'),
+(66, 4, 70.00, 'Pedido em separação', '2022-12-03 01:59:46', '2022-12-02 22:59:46'),
+(67, 4, 50.00, 'Pedido em separação', '2022-12-03 02:00:34', '2022-12-02 23:00:34'),
+(68, 4, 148.70, 'Pedido em separação', '2022-12-03 02:05:43', '2022-12-02 23:05:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `compras_produtos`
+--
+
+CREATE TABLE `compras_produtos` (
+  `id` int(11) NOT NULL,
+  `id_produto` int(10) NOT NULL,
+  `id_compra` int(10) NOT NULL,
+  `quantidade` int(10) NOT NULL,
+  `valor_unitario` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compras_produtos`
+--
+
+INSERT INTO `compras_produtos` (`id`, `id_produto`, `id_compra`, `quantidade`, `valor_unitario`) VALUES
+(13, 8, 65, 1, '34.90'),
+(14, 2, 66, 1, '70.00'),
+(15, 4, 67, 1, '50.00'),
+(16, 42, 68, 3, '22.90'),
+(17, 38, 68, 2, '40.00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lista_favoritos`
 --
 
@@ -33,27 +83,13 @@ CREATE TABLE `lista_favoritos` (
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `pedido`
+-- Dumping data for table `lista_favoritos`
 --
 
-CREATE TABLE `pedido` (
-  `id` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `valor_total` double(9,2) NOT NULL,
-  `status` varchar(40) NOT NULL,
-  `data_status` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pedido`
---
-
-INSERT INTO `pedido` (`id`, `id_cliente`, `valor_total`, `status`, `data_status`) VALUES
-(46, 4, 79.00, 'Pedido em separação', '2022-12-02 16:59:10'),
-(47, 4, 79.00, 'Pedido em separação', '2022-12-02 16:59:34');
+INSERT INTO `lista_favoritos` (`id`, `id_produto`, `id_usuario`) VALUES
+(27, 10, 4),
+(28, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -124,15 +160,21 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_cadastro`, `admin`
 --
 
 --
--- Indexes for table `lista_favoritos`
+-- Indexes for table `compras`
 --
-ALTER TABLE `lista_favoritos`
+ALTER TABLE `compras`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pedido`
+-- Indexes for table `compras_produtos`
 --
-ALTER TABLE `pedido`
+ALTER TABLE `compras_produtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lista_favoritos`
+--
+ALTER TABLE `lista_favoritos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -152,16 +194,22 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT for table `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `compras_produtos`
+--
+ALTER TABLE `compras_produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `lista_favoritos`
 --
 ALTER TABLE `lista_favoritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `produtos`
@@ -173,7 +221,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
