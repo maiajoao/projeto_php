@@ -51,7 +51,7 @@ if (isset($_GET['p'])) {
                 <div class="menu">
                 <?php if (isset($_SESSION['admin'])) {
                         if ($_SESSION['admin'] == 1) {
-                            echo '<a href="?p=painel_administrativo"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+                            echo '<a href="?p=painel_de_controle"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
                         }
                     } ?>
                     <a href="#"><i class="fa-solid fa-user" onclick="toggleMenu()"></i></a>
@@ -84,7 +84,7 @@ if (isset($_GET['p'])) {
                             <p>Perfil</p>
                             <span>></span>
                         </a>
-                        <a href="?p=seus_pedidos" class="submenuL">
+                        <a href="?p=meus_pedidos" class="submenuL">
                             <p>Meus pedidos</p>
                             <span>></span>
                         </a>    

@@ -36,7 +36,7 @@ $qtd_pedidos = $sql_query_pedidos->num_rows;
                             </div>
                         </div>
                         <div class="pedido-id">
-                            PEDIDO N°<?php echo $pedido['id'] ?><br><br><a href="" style="color: #ebe2cd; text-decoration: none;">Exibir detalhes do pedido</a></th>
+                            PEDIDO N°<?php echo $pedido['id'] ?><br><br><a href="?p=detalhes_pedido&id=<?php echo $pedido['id'] ?>" style="color: #ebe2cd; text-decoration: none;">Exibir detalhes do pedido</a></th>
                         </div>
                     </th>
                 </tr>
