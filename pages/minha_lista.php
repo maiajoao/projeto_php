@@ -29,6 +29,7 @@ $sql_query = $mysqli->query("SELECT * FROM lista_favoritos WHERE id_usuario='$us
                     <tr>
                         <th></th>
                         <th>Produto</th>
+                        <th colspan="1" width=200px></th>
                         <th>Preço</th>
                         <th></th>
                     </tr>
@@ -41,6 +42,7 @@ $sql_query = $mysqli->query("SELECT * FROM lista_favoritos WHERE id_usuario='$us
                         <tr>
                             <td><a href="?p=produto&id=<?php echo $produto['id'] ?>"><img src="<?php echo $produto['imagem'] ?>" alt="" width="80"></a></td>
                             <td><a href="?p=produto&id=<?php echo $produto['id'] ?>" style="text-decoration: none;"><?php echo $produto["nome"]; ?></a></td>
+                            <td></td>
                             <td><?php echo formatar_valor($produto["valor"]); ?></td>
                             <td><a href="?p=adicionar_a_lista&id=<?php echo $produto["id"]; ?>"><span class="text-danger"><i class="fa-solid fa-trash"></i></span></a></td>
                         </tr>
@@ -49,7 +51,7 @@ $sql_query = $mysqli->query("SELECT * FROM lista_favoritos WHERE id_usuario='$us
                     }
                 } else { ?>
                     <tr>
-                        <td colspan="3">Nenhum Item salvo na sua lista.</td>
+                        <td colspan="6">Nenhum Item salvo na sua lista.</td>
                     </tr>
                 <?php } ?>
             </table>

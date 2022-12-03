@@ -1,7 +1,7 @@
 <?php
 
 $erro = false;
-if (isset($_POST['email']) || isset($_POST['senha'])) {
+if (isset($_POST['logar'])) {
 
     include('lib/conexao.php');
     $email = $mysqli->real_escape_string($_POST['email']);
@@ -70,7 +70,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
                     
 
                     <div class="input-field button">
-                        <input type="submit" name="logar" value="Logar agora">
+                        <button name="logar" value="1" class="buttonS">Logar agora</button>
                     </div>
 
                     <div class="login-signup">

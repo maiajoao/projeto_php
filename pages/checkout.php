@@ -25,11 +25,11 @@ if (isset($_POST['finalizar'])) {
         $valor_total += ($value["item_quantity"] * $value["item_price"]);
     }
 
-    $sql_code = "INSERT INTO pedido (id_cliente, valor_total, status) VALUES ('$id_cliente', '$valor_total', '$status')";
+    $sql_code = "INSERT INTO compras (id_cliente, valor_total, status) VALUES ('$id_cliente', '$valor_total', '$status')";
     $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
+    $id_compra = ($mysqli->query("SELECT * FROM compras WHERE id_cliente=$id_cliente ORDER BY data_compra DESC LIMIT 1;")->fetch_assoc())['id'];
     $usuario = $mysqli->query("SELECT * FROM usuarios WHERE id = '$id_cliente'")->fetch_assoc();
-
     ob_start(); ?>
 
     <h1>Veja o resumo do seu pedido</h1>
@@ -45,6 +45,11 @@ if (isset($_POST['finalizar'])) {
         </thead>
         <?php
         foreach ($_SESSION["shopping_cart"] as $key => $value) {
+            $valor_unitario = $value['item_price'];
+            $id_produto = $value['item_id'];
+            $quantidade = $value['item_quantity'];
+            $sql_code = "INSERT INTO compras_produtos (id_compra, id_produto, quantidade, valor_unitario) VALUES ('$id_compra', '$id_produto', '$quantidade', '$valor_unitario')";
+            $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
         ?>
             <tr>
                 <td></td>
@@ -154,9 +159,9 @@ if (isset($_POST['finalizar'])) {
     <script>
         let submit = document.querySelector(".buttonS")
             submit.onclick = function(){
-                this.innerHTML= "<div class='loader'></div>"
+                this.innerHTML= "Finalizando pedido<div class='loader'></div>"
                 setTimeout(() =>{
-                this.innerHTML= "Registrado"
+                this.innerHTML= "Finalizado"
                 },2000)
                 }
     </script>

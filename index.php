@@ -84,7 +84,7 @@ if (isset($_GET['p'])) {
                             <p>Perfil</p>
                             <span>></span>
                         </a>
-                        <a href="" class="submenuL">
+                        <a href="?p=seus_pedidos" class="submenuL">
                             <p>Meus pedidos</p>
                             <span>></span>
                         </a>    

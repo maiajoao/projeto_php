@@ -108,7 +108,7 @@ if (isset($_POST['registrar'])) {
                     <span class="erro"><?php if(isset($erro[4])) echo $erro[4] ?></span>
 
                     <div class="input-field button">
-                        <button class="buttonS">Registrar agora</button>
+                        <button name="registrar" value="1" class="buttonS">Registrar agora</button>
                             
                     </div>
 

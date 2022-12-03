@@ -66,7 +66,7 @@ if(isset($_POST['enviar'])) {
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                         <div class="input-field button">
-                            <input type="submit" name="enviar" value="Enviar nova senha para o email">
+                            <button name="enviar" value="1" class="buttonS">Enviar nova senha para o email</button>
                         </div>
                         <div class="login-signup">
                             <span class="text">Lembrou?
