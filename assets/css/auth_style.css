@@ -108,20 +108,33 @@ body {
     text-decoration: underline;
 }
 
-.form .button {
-    margin-top: 35px;
+.buttonS:is(:focus, :valid) ~ i {
+    color: #00051b;
 }
 
-.form .button input {
+.buttonS{
+    margin-top: 10px;
+}
+
+.buttonS {
     border: none;
     color: #fff;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 6px;
-    background-color: #161616;
+    background-color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
 }
 
 .button input {
@@ -135,4 +148,27 @@ body {
 
 .erro {
     color: rgb(190, 0, 0);
+}
+
+.loader{
+    position: absolute;
+    top: 9px;
+    left: 80%;
+    width: 2vw;
+    height: 2vw;
+    display: flex;
+    pointer-events: none;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: an1 1s ease infinite;
+}
+
+@keyframes an1{
+    0%{
+        transform: rotate(0turn);
+    }
+    100%{
+        transform: rotate(1turn);
+    }
 }
