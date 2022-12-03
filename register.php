@@ -108,7 +108,8 @@ if (isset($_POST['registrar'])) {
                     <span class="erro"><?php if(isset($erro[4])) echo $erro[4] ?></span>
 
                     <div class="input-field button">
-                        <input type="submit" name="registrar" value="Registrar agora">
+                        <button class="buttonS">Registrar agora</button>
+                            
                     </div>
 
                     <div class="login-signup">
@@ -120,5 +121,15 @@ if (isset($_POST['registrar'])) {
             </div>
         </div>
     </div>
+
+    <script>
+         let submit = document.querySelector(".buttonS")
+            submit.onclick = function(){
+                this.innerHTML= "<div class='loader'></div>"
+                setTimeout(() =>{
+                this.innerHTML= "Registrado"
+                },2000)
+                }
+</script>
 </body>
 </html>
