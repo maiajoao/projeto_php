@@ -73,7 +73,7 @@ if (isset($_POST['finalizar'])) {
         <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
         <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p>
     </div>
-    <?php
+<?php
     $html = ob_get_clean();
     enviar_email($usuario['email'], "Compra realizada com sucesso!", $html);
 
@@ -158,12 +158,12 @@ if (isset($_POST['finalizar'])) {
     </div>
     <script>
         let submit = document.querySelector(".buttonS")
-            submit.onclick = function(){
-                this.innerHTML= "Finalizando pedido<div class='loader'></div>"
-                setTimeout(() =>{
-                this.innerHTML= "Finalizado"
-                },2000)
-                }
+        submit.onclick = function() {
+            this.innerHTML = "Finalizando pedido<div class='loader'></div>"
+            setTimeout(() => {
+                this.innerHTML = "Finalizado"
+            }, 2000)
+        }
     </script>
 
 </div>
