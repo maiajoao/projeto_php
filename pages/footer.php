@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="footer-end">
-            <p>MangaXpress &copy;2022</p>
+            <p>MangaXpress &copy; <?php echo date('Y') ?></p>
         </div>
     </nav>
 </footer>
