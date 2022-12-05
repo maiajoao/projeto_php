@@ -16,7 +16,7 @@ if(isset($_POST['registrar'])) {
     $estado = $mysqli->real_escape_string($_POST['estado']);
     $cep = $mysqli->real_escape_string($_POST['cep']);
     if(strlen($cep) == 8) {
-        $cep = substr($cep, 0, 5) . "-" . substr($cep, 5, 9);
+        $cep = substr($cep, 0, 5) . "-" . substr($cep, 5, 8);
     }
 
     $mysqli->query("UPDATE usuarios SET endereco1='$endereco', endereco2='$complemento', cidade='$cidade', bairro='$bairro', estado='$estado', cep='$cep' WHERE id='$user_id'");

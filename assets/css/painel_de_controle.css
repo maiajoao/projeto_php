@@ -1,10 +1,6 @@
 main {
-    background: linear-gradient(45deg, #00051b, #c0c0c0);
-    padding-bottom: 100px;
-    margin-bottom: 50px;
     display: grid;
     place-items: center;
-    height: auto;
 }
 
 .container{
