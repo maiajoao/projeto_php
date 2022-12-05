@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/header_style.css" />
     <link rel="stylesheet" href="assets/css/footer_style.css" />
     <link rel="stylesheet" href="assets/css/body.css" />
@@ -22,7 +23,7 @@
                     </h1>
                 </a>
                 <form class="search" method="GET" action="index.php">
-                    <input type="hidden" name="p" value="pagina_pesquisar">
+                    <input type="hidden" name="p" value="pesquisar">
                     <input type="hidden" name="search" value="pesquisar">
                     <input type="text" name="keyword" class="search-bar" placeholder="Busque aqui seu produto">
                     <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>

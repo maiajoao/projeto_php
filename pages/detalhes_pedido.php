@@ -57,7 +57,7 @@ $usuario = $mysqli->query("SELECT * FROM usuarios WHERE id='$user_id'")->fetch_a
         <h1>Endereço de entrega</h1><br>
         <hr><br>
         <div class="entrega">
-            <p><?php echo $usuario['nome'] ?></p>
+            <p><?php echo $usuario['nome'] ?></p><br>
             <p><?php echo $usuario['endereco1'] ?></p>
             <p><?php echo $usuario['endereco2'] . ", " . $usuario['bairro'] ?></p>
             <p><?php echo $usuario['cidade'] . ", " . $usuario['estado'] . ", " . $usuario['cep'] ?></p><br><br>

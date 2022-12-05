@@ -29,6 +29,7 @@ if(isset($_SESSION['usuario'])) {
     <div class="contentCase">
         <span class="author"><?php echo $produto['autor'];?></span>
         <h1 class="product"><?php echo $produto['nome'];?></h1>
+        <?php if($produto['estoque'] > 0) { ?>
         <label for="price" class="price">Preço:</label>
         <span class="price"><?php echo formatar_valor($produto['valor']);?></span><br>
         <div class="counter">
@@ -65,6 +66,9 @@ if(isset($_SESSION['usuario'])) {
                 } ?>
             </button>
         </form>
+        <?php } else { ?>
+            <br><h2 style="color: gray;">Produto indisponivel no momento!</h2><br><br><br><br>
+        <?php }?>
         <h4>Informações do produto</h4>
         <hr>
         <p class="details"><?php echo $produto['descricao'];?></p>

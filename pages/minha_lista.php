@@ -44,14 +44,14 @@ $sql_query = $mysqli->query("SELECT * FROM lista_favoritos WHERE id_usuario='$us
                             <td><a href="?p=produto&id=<?php echo $produto['id'] ?>" style="text-decoration: none;"><?php echo $produto["nome"]; ?></a></td>
                             <td></td>
                             <td><?php echo formatar_valor($produto["valor"]); ?></td>
-                            <td><a href="?p=adicionar_a_lista&id=<?php echo $produto["id"]; ?>"><span class="text-danger"><i class="fa-solid fa-trash"></i></span></a></td>
+                            <td><a href="?p=adicionar_a_lista&id=<?php echo $produto["id"]; ?>"><span class="text-danger"><i class="fa-solid fa-xmark"></i></span></a></td>
                         </tr>
                         
                 <?php 
                     }
                 } else { ?>
                     <tr>
-                        <td colspan="6">Nenhum Item salvo na sua lista.</td>
+                        <td colspan="6">Nenhum Item salvo.</td>
                     </tr>
                 <?php } ?>
             </table>

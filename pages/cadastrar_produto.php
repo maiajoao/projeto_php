@@ -94,7 +94,7 @@ if (isset($_POST['nome'])) {
                         <option value="">- - - -</option>
                         <option value="destaque">Destaque</option>
                         <option value="lancamento">Lancamento</option>
-                        <option value="pre-venda">pre-venda</option>
+                        <option value="pre-venda">Pre-venda</option>
                     </select>
                 </div>
                 <div class="input-field custom-img">

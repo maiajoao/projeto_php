@@ -1,6 +1,6 @@
 <?php
 
-$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque' LIMIT 16");
+$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque' LIMIT 12");
 
 
 ?>
@@ -28,7 +28,7 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
                 <img src="assets\img\mangas.png" alt="imagem 1">
             </div>
             <div class="slide">
-                <img src="assets\img\berserkerslider.png" alt="imagem 2">
+                <a href="?p=pesquisar&keyword=berserk"><img src="assets\img\berserkerslider.png" alt="imagem 2"></a>
             </div>
 
 

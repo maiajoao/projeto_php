@@ -23,6 +23,10 @@ if (isset($_POST['finalizar'])) {
 
     foreach ($_SESSION["shopping_cart"] as $key => $value) {
         $valor_total += ($value["item_quantity"] * $value["item_price"]);
+        $id_produto = $value["item_id"];
+        $estoque_produto = $mysqli->query("SELECT estoque FROM produtos WHERE id='$id_produto'")->fetch_assoc()['estoque'];
+        $novo_estoque = intval($estoque_produto) - intval($value["item_quantity"]);
+        $mysqli->query("UPDATE produtos SET estoque='$novo_estoque' WHERE id='$id_produto'");
     }
 
     $sql_code = "INSERT INTO compras (id_cliente, valor_total, status) VALUES ('$id_cliente', '$valor_total', '$status')";

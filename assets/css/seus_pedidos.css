@@ -3,7 +3,7 @@ main {
     display: grid;
     place-items: center;
     background: linear-gradient(45deg, #00051b, #c0c0c0);
-    padding: 50px 0px 100px 0;
+    padding: 50px 0px 150px 0;
     margin-bottom: 60px;
     font-family: 'Poppins', sans-serif;
 }

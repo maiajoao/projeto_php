@@ -6,7 +6,11 @@ protect(1);
 $ciclo_vendas = $mysqli->query("SELECT SUM(valor_total) as soma_valores FROM compras")->fetch_assoc()['soma_valores'];
 
 $qtd_vendas = $mysqli->query("SELECT count(id) as qtd_vendas FROM compras")->fetch_assoc()['qtd_vendas'];
-$media_pedidos = $ciclo_vendas / $qtd_vendas;
+if($qtd_vendas==0) {
+    $media_pedidos = 0;
+} else {
+    $media_pedidos = $ciclo_vendas / $qtd_vendas;
+}
 
 $qtd_usuarios = $mysqli->query("SELECT count(id) as qtd_usuarios FROM usuarios")->fetch_assoc()['qtd_usuarios'];
 
@@ -104,7 +108,7 @@ $qtd_produtos = $mysqli->query("SELECT count(id) as qtd_produtos FROM produtos")
                 }
             } else { ?>
                 <tr>
-                    <td colspan="6">Nenhum Item salvo na sua lista.</td>
+                    <td colspan="6">Nenhum Pedido feito.</td>
                 </tr>
             <?php } ?>
         </table>

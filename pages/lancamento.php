@@ -1,6 +1,6 @@
 <?php
 
-$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'lancamento' LIMIT 16");
+$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'lancamento' LIMIT 12");
 
 
 ?>

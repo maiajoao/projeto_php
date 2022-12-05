@@ -1,4 +1,8 @@
+<?php
 
+$sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'pre-venda' LIMIT 12");
+
+?>
 <link rel="stylesheet" href="assets/css/pages_style.css">
 <section id="hero">
 
@@ -8,20 +12,26 @@
     <p>Economize pagando menos e levando mais!</p>
 
 </section>
-<!--!PRODUTOS EM DESTAQUE -->
+
+
 <div class="page-wrapper">
     <div class="content-box">
         <section id="destaques" class="section-destaques">
             <h2>Mangás em Pré-Venda</h2>
             <p>Novos produtos em breve</p>
             <div class="container-produto">
-                <div class="produto">
-                    <img src="assets/img/mangas/uzumaki.jpg" alt="uzumaki-vol1">
-                    <div class="desc-produto">
-                        <span>Uzumaki Deluxe Edition</span>
-                        <h4>R$69,90</h4>
-                    </div>
-                </div>
+            <div class="container-produto">
+                <?php while($prevenda = $sql_query->fetch_assoc()) { ?>
+                    <div class="produto">
+                        <a href="<?php echo '?p=produto&id=' . $prevenda['id'] ?>">
+                            <img src="<?php echo $prevenda['imagem'] ?>" alt="<?php echo $prevenda['nome'] ?>" height="350px">
+                            <div class="desc-produto">
+                                <span><?php echo $prevenda['nome'] ?></span>
+                                <h4>R$ <?php echo $prevenda['valor'] ?></h4>
+                            </div>
+                        </a>
+                    </div> <?php } ?>
+            </div>
             </div>
         </section>
     </div>
