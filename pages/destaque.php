@@ -25,7 +25,7 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
 
             <!--Imagens-->
             <div class="slide first">
-                <img src="assets\img\mangas.png" alt="imagem 1">
+                <a href="?p=pesquisar&search=pesquisar&keyword="><img src="assets\img\mangas.png" alt="imagem 1"></a>
             </div>
             <div class="slide">
                 <a href="?p=pesquisar&keyword=berserk"><img src="assets\img\berserkerslider.png" alt="imagem 2"></a>
@@ -54,7 +54,7 @@ $sql_query = $mysqli->query("SELECT * FROM produtos WHERE categoria = 'destaque'
 
         setInterval( function(){
             nextImage()
-        },4000)
+        },5000)
 
         function nextImage(){
             count++
